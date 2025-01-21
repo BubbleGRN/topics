@@ -23,7 +23,7 @@ const schema = new Schema(
       type: String,
       required: [true, 'productCategoryRequired'],
       enum: {
-        values: ['food', 'drink', 'music', 'phone'],
+        values: ['gun', 'vest', 'backage', 'helmat', 'bb', 'others'],
         message: 'productCategoryInvalid',
       },
     },

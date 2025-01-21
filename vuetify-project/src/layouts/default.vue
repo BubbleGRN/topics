@@ -1,14 +1,24 @@
 <template>
   <v-app-bar>
-    <v-container class="d-flex align-center bg-green-darken-4">
+    <v-container class="d-flex align-center justify-space-between bg-primary">
       <v-btn to="/" :active="false">Survivor‘s Quest</v-btn>
-      <v-spacer />
+      <v-sheet
+        v-for="n in 1"
+        :key="n"
+        class="ma-2 pa-2 bg-secondary"
+      >
       <template v-for="nav of navs" :key="nav.to">
         <v-btn v-if="nav.show" :to="nav.to" :prepend-icon="nav.icon">
           {{ nav.text }}
           <v-badge v-if="nav.to === '/cart'" :content="user.cart" floating color="red"></v-badge>
         </v-btn>
       </template>
+    </v-sheet>
+    <v-sheet
+        v-for="n in 1"
+        :key="n"
+        class="ma-2 pa-2 bg-secondary"
+      >
       <v-btn v-if="user.isLoggedIn" prepend-icon="mdi-account-arrow-right" @click="logout">{{ $t('nav.logout') }}</v-btn>
       <v-menu>
         <template #activator="{ props }">
@@ -25,6 +35,7 @@
           </v-list-item>
         </v-list>
       </v-menu>
+    </v-sheet>
     </v-container>
   </v-app-bar>
   <v-main>

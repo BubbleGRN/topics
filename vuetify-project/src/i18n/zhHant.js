@@ -67,10 +67,12 @@ export default {
     addCartSuccess: '加入購物車成功',
   },
   productCategory: {
-    food: '食品',
-    drink: '飲料',
-    music: '音樂',
-    phone: '手機'
+    gun: '氣槍',
+    vest: '背心護具',
+    backage: '背包',
+    helmat: '頭盔',
+    bb: '子彈',
+    others: '其他'
   },
   fileAgent: {
     helpText: '點擊或拖曳檔案至此',
