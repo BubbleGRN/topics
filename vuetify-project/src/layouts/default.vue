@@ -62,6 +62,7 @@ const navs = computed(() => {
   return [
     { to: '/register', text: t('nav.register'), icon: 'mdi-account-plus', show: !user.isLoggedIn },
     { to: '/login', text: t('nav.login'), icon: 'mdi-account-arrow-left', show: !user.isLoggedIn },
+    { to: '/shop', text: t('nav.shop'), icon: 'mdi-store', show: user.isLoggedIn},
     { to: '/cart', text: t('nav.cart'), icon: 'mdi-cart', show: user.isLoggedIn },
     { to: '/orders', text: t('nav.orders'), icon: 'mdi-format-list-bulleted', show: user.isLoggedIn },
     { to: '/admin', text: t('nav.admin'), icon: 'mdi-cog', show: user.isLoggedIn && user.isAdmin },

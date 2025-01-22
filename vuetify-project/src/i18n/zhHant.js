@@ -5,6 +5,7 @@ export default {
   nav: {
     register: '註冊',
     login: '登入',
+    shop: '商城',
     cart: '購物車',
     orders: '訂單',
     admin: '管理',

@@ -5,6 +5,7 @@ export default {
   nav: {
     register: 'Register',
     login: 'login',
+    shop: 'shop',
     cart: 'Shopping cart',
     orders: 'order',
     admin: 'Management',
@@ -67,10 +68,12 @@ export default {
     addCartSuccess: 'Add to shopping cart successfully',
   },
   productCategory: {
-    food: 'food',
-    drink: 'drink',
-    music: 'music',
-    phone: 'mobile phone',
+    gun: 'gun',
+    vest: 'vest',
+    backage: 'backage',
+    helmat: 'helmat',
+    bb: 'bb',
+    others: 'others'
   },
   fileAgent: {
     helpText: 'Click or drag the file here',

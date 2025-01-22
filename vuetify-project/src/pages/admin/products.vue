@@ -171,7 +171,7 @@ const schema = yup.object({
   category: yup
     .string()
     .required(t('api.productCategoryRequired'))
-    .oneOf(['food', 'drink', 'music', 'phone'], t('api.productCategoryInvalid')),
+    .oneOf(['gun', 'vest', 'backage', 'helmat','bb','others'], t('api.productCategoryInvalid')),
   sell: yup
     .boolean()
     .required(t('api.productSellRequired')),
@@ -192,10 +192,12 @@ const description = useField('description')
 const category = useField('category')
 const sell = useField('sell')
 const categoryOptions = computed(() => [
-  { text: t('productCategory.food'), value: 'food' },
-  { text: t('productCategory.drink'), value: 'drink' },
-  { text: t('productCategory.music'), value: 'music' },
-  { text: t('productCategory.phone'), value: 'phone' },
+  { text: t('productCategory.gun'), value: 'gun' },
+  { text: t('productCategory.vest'), value: 'vest' },
+  { text: t('productCategory.backage'), value: 'backage' },
+  { text: t('productCategory.helmat'), value: 'helmat' },
+  { text: t('productCategory.bb'), value: 'bb' },
+  { text: t('productCategory.others'), value: 'others' },
 ])
 
 const fileAgent = ref(null)
