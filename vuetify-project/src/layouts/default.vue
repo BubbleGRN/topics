@@ -1,6 +1,6 @@
 <template>
   <v-app-bar>
-    <v-container class="d-flex align-center justify-space-between bg-primary">
+    <v-container class="d-flex align-center justify-space-between bg-primary" style="margin-left: 0px; margin-right: 0px; max-width: 1910px;">
       <v-btn to="/" :active="false">Survivor‘s Quest</v-btn>
       <v-sheet
         v-for="n in 1"
@@ -63,6 +63,7 @@ const navs = computed(() => {
     { to: '/register', text: t('nav.register'), icon: 'mdi-account-plus', show: !user.isLoggedIn },
     { to: '/login', text: t('nav.login'), icon: 'mdi-account-arrow-left', show: !user.isLoggedIn },
     { to: '/shop', text: t('nav.shop'), icon: 'mdi-store', show: user.isLoggedIn},
+    { to: '/activity', text: t('nav.activity'), icon: 'mdi-account-multiple', show: user.isLoggedIn},
     { to: '/cart', text: t('nav.cart'), icon: 'mdi-cart', show: user.isLoggedIn },
     { to: '/orders', text: t('nav.orders'), icon: 'mdi-format-list-bulleted', show: user.isLoggedIn },
     { to: '/admin', text: t('nav.admin'), icon: 'mdi-cog', show: user.isLoggedIn && user.isAdmin },

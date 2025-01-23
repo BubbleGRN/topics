@@ -7,6 +7,7 @@ export default {
     login: 'login',
     shop: 'shop',
     cart: 'Shopping cart',
+    activity: 'activity',
     orders: 'order',
     admin: 'Management',
     logout: 'Logout',

@@ -1,20 +1,24 @@
 <template>
-  <v-container>
-    <v-row>
-      <v-col cols="12">
-        <v-carousel
-    height="425"
-    show-arrows="hover"
+  <v-container class="background-home">
+    <v-carousel
+    height="870"
+    :show-arrows="false"
+    hide-delimiters
     cycle
     hide-delimiter-background
+    style="width: 95%;"
   >
     <v-carousel-item
       v-for="(item, i) in items"
       :key="i"
       :src="item.src"
+      reverse-transition="fade-transition"
+      transition="fade-transition"
     >
     </v-carousel-item>
   </v-carousel>
+    <v-row>
+      <v-col cols="12">
       </v-col>
     </v-row>
     <v-row>
@@ -42,7 +46,7 @@
     </v-card>
     </v-col>
     <v-col cols="12" md="8">
-      <v-card>
+      <v-card style="width: 93%;">
     <v-toolbar color="primary" title="詳細資訊">
     </v-toolbar>
       <v-tabs-window v-model="tab" style="border: 20px solid #2D4B2A; height: 340px;">
@@ -455,16 +459,16 @@
         ],
         items: [
           {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
+            src: 'https://bookmestatic.net.nz/bookme-product-images/products/71967/71967_image1_fzQYhXxiaQ_AJGR_20240128_140907.jpg',
           },
           {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
+            src: 'https://www.abbeysupply.com/res/Airsoft-tactics.jpg',
           },
           {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
+            src: 'https://www.xtremeparkadventures.com/wp-content/uploads/2019/05/Airsoft-Fields-in-Raleigh.jpg',
           },
           {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
+            src: 'https://images.squarespace-cdn.com/content/v1/5ac9360aaa49a16d3b6ef162/1704673733296-7BXYQSGFXY5NJ4X8V93G/Untitled+design+%285%29.png?format=2500w',
           },
         ],
       tab: 'option-1',
@@ -494,5 +498,16 @@ meta:
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: #7A9A5E #D1C18B;
+}
+
+.background-home {
+  max-width: 1920px;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-left: 100px;
+  padding-right: 0px;
+  padding-top: 0px;
+  background: url(../../img/soldier.jpg) no-repeat;
+  background-size: cover;
 }
 </style>

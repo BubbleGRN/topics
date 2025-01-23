@@ -7,6 +7,7 @@ export default {
     login: '登入',
     shop: '商城',
     cart: '購物車',
+    activity: '活動',
     orders: '訂單',
     admin: '管理',
     logout: '登出',
