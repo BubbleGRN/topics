@@ -12,6 +12,7 @@
   "dependencies": {
     "@boindil/vue-file-agent-next": "^1.0.5",
     "@mdi/font": "7.4.47",
+    "animate.css": "^4.1.1",
     "axios": "^1.7.9",
     "pinia-plugin-persistedstate": "^4.2.0",
     "roboto-fontface": "*",

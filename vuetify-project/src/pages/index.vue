@@ -1,12 +1,11 @@
 <template>
-  <v-container class="background-home">
+  <v-container style="padding: 0px; margin: 0px;">
     <v-carousel
-    height="870"
     :show-arrows="false"
     hide-delimiters
     cycle
     hide-delimiter-background
-    style="width: 95%;"
+    style="width: 100vw; height: 100%;"
   >
     <v-carousel-item
       v-for="(item, i) in items"
@@ -15,51 +14,56 @@
       reverse-transition="fade-transition"
       transition="fade-transition"
     >
+    <v-text class="my-animation" style="font-size: 5rem;">
+      {{ item.text }}
+    </v-text>
     </v-carousel-item>
   </v-carousel>
     <v-row>
-      <v-col cols="12">
+      <v-col cols="12" style="">
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="12" md="4">
-        <v-card class="bg-secondary" style="border-width: 20px; height: 405px;">
-          <div class="d-flex flex-row h-100">
+      <v-col cols="12" class="d-flex justify-center">
+      <v-text>詳細資訊 :</v-text>
+      </v-col>
+    </v-row>
+  <v-row>
+    <v-col cols="12" md="12" style="margin-left: 7rem;">
+      <v-card style="width: 93%;">
+    <v-toolbar color="primary" class="d-flex">
+      <v-spacer></v-spacer>
+      <div class="d-flex flex-row w-100">
       <v-tabs
         v-model="tab"
-        direction="vertical"
-        class="w-100 bg-primary-darken-1 justify-content-center"
-        slider-color="transparent"
+        direction="horizontal"
+        class="d-flex bg-primary justify-space-around full-width"
         color="white"
         dark
         flat
       >
-        <v-tab text="氣槍" value="option-1" style="height: 52px;"></v-tab>
-        <v-tab text="護具" value="option-2" style="height: 52px;"></v-tab>
-        <v-tab text="背包" value="option-3" style="height: 52px;"></v-tab>
-        <v-tab text="頭盔" value="option-4" style="height: 52px;"></v-tab>
-        <v-tab text="子彈" value="option-5" style="height: 52px;"></v-tab>
-        <v-tab text="其他" value="option-6" style="height: 52px;"></v-tab>
-        <v-tab text="租借" value="option-7" style="height: 52px;"></v-tab>
+        <v-tab text="氣槍" value="option-1" class="tab-item" style="font-size: 20px;"></v-tab>
+        <v-tab text="護具" value="option-2" class="tab-item" style="font-size: 20px;"></v-tab>
+        <v-tab text="背包" value="option-3" class="tab-item" style="font-size: 20px;"></v-tab>
+        <v-tab text="頭盔" value="option-4" class="tab-item" style="font-size: 20px;"></v-tab>
+        <v-tab text="子彈" value="option-5" class="tab-item" style="font-size: 20px;"></v-tab>
+        <v-tab text="其他" value="option-6" class="tab-item" style="font-size: 20px;"></v-tab>
+        <v-tab text="租借" value="option-7" class="tab-item" style="font-size: 20px;"></v-tab>
       </v-tabs>
-      </div>
-    </v-card>
-    </v-col>
-    <v-col cols="12" md="8">
-      <v-card style="width: 93%;">
-    <v-toolbar color="primary" title="詳細資訊">
+    </div>
     </v-toolbar>
-      <v-tabs-window v-model="tab" style="border: 20px solid #2D4B2A; height: 340px;">
+      <v-tabs-window v-model="tab" style="border: 20px solid #2D4B2A;">
         <v-tabs-window-item value="option-1">
           <v-card flat>
-            <v-card-text class="scrollable-card">
-              <h3 style="font-size: larger; font-style: italic; color: #2D4B2A">
+            <v-card-text>
+              <h1 style="font-style: italic; color: #2D4B2A">
                 在生存遊戲中，氣槍通常是用來模擬真實武器射擊的一種道具。它透過壓縮氣體（如二氧化碳或空氣）來發射BB彈或其他小型彈丸。氣槍的設計可以非常接近真實槍械，並且能提供一種比較安全且低傷害的射擊體驗，適合於模擬戰爭、競技射擊或戶外生存遊戲。
-              </h3>
+              </h1>
               <br>
 
-              <h2>氣槍的特點：</h2>
-              <p>
+              <h2 style="font-size: 25px;">氣槍的特點：</h2>
+              <br>
+              <h3 style="line-height: 30px;">
                 動力系統：氣槍一般使用壓縮空氣、CO2或氮氣等氣體作為推動力。CO2氣瓶是最常見的選擇，因為它能提供穩定且持久的動力，讓氣槍的射擊體驗更加真實。<br>
 
                 射擊方式：氣槍的射擊方式可以分為單發、連發或半自動。根據型號的不同，玩家可以選擇合適的射擊模式來進行遊戲。<br>
@@ -71,21 +75,23 @@
                 遊戲模式：氣槍常用於生存遊戲（例如Airsoft或Paintball），這些遊戲通常包括策略、合作與模擬戰鬥，玩家需要利用氣槍來進行對抗、執行任務或佔領區域。<br>
 
                 安全性：雖然氣槍的彈丸速度較低，比起真實武器安全許多，但仍需要佩戴防護裝備，特別是眼睛和臉部防護，以避免受傷。<br>
-              </p>
+              </h3>
+              <br>
+              <br>
 
               <h2>氣槍的應用：</h2>
-              <p class="mb-10">
+              <h3 class="mb-10">
                 生存遊戲（Airsoft）：氣槍在生存遊戲中是一個重要的道具，玩家通過這些氣槍模擬戰鬥，進行團隊合作或對抗。這些遊戲通常有不同的任務目標和規則，並且注重策略和戰術。<br>
 
                 訓練工具：氣槍也可用作槍械訓練工具，幫助玩家練習瞄準和射擊技巧。它相對便宜且無需使用實彈，因此是一種較為安全的訓練選擇。<br>
-              </p>
+              </h3>
             </v-card-text>
           </v-card>
         </v-tabs-window-item>
 
         <v-tabs-window-item value="option-2">
           <v-card flat>
-            <v-card-text class="scrollable-card">
+            <v-card-text>
               <h3 style="font-size: larger; font-style: italic; color: #2D4B2A">
                 生存遊戲中的護具通常是用來增加角色的生存機會，減少受到傷害的風險。護具的種類、效果和材質會根據不同遊戲的設定而有所不同，但大致上，它們有一些共同的特徵，以下是一些常見的護具類型：
               </h3>
@@ -132,7 +138,7 @@
 
         <v-tabs-window-item value="option-3">
           <v-card flat>
-            <v-card-text class="scrollable-card">
+            <v-card-text>
               <h3 style="font-size: larger; font-style: italic; color: #2D4B2A">
                 在生存遊戲中，背包是非常關鍵的元素之一，主要用來存儲玩家所收集的資源、工具、武器、藥品等物品。背包的設計和功能會根據遊戲的不同而有所變化，但基本上都圍繞著玩家的物品管理和空間規劃。以下是背包在生存遊戲中的一些常見特點和功能：
               </h3>
@@ -189,7 +195,7 @@
 
         <v-tabs-window-item value="option-4">
           <v-card flat>
-            <v-card-text class="scrollable-card">
+            <v-card-text>
               <h3 style="font-size: larger; font-style: italic; color: #2D4B2A">
                 在生存遊戲中，頭盔是常見的護具之一，主要用來保護角色的頭部，減少來自敵人攻擊或環境危險造成的傷害。頭盔的設計、效果以及功能根據遊戲的不同會有所不同，以下是有關頭盔的一些詳細介紹：
               </h3>
@@ -387,7 +393,7 @@
 
         <v-tabs-window-item value="option-7">
           <v-card flat>
-            <v-card-text class="scrollable-card">
+            <v-card-text>
               <h3 style="font-size: larger; font-style: italic; color: #2D4B2A">
                 租借裝備和武器時應該注意的一些要點：
               </h3>
@@ -447,6 +453,8 @@
 </template>
 
 <script>
+import 'animate.css';
+
   export default {
     data () {
       return {
@@ -460,15 +468,19 @@
         items: [
           {
             src: 'https://bookmestatic.net.nz/bookme-product-images/products/71967/71967_image1_fzQYhXxiaQ_AJGR_20240128_140907.jpg',
+            text: 'MORE THAN A GAME',
           },
           {
             src: 'https://www.abbeysupply.com/res/Airsoft-tactics.jpg',
+            text: 'THE BEST AIRSOFT ARENA',
           },
           {
             src: 'https://www.xtremeparkadventures.com/wp-content/uploads/2019/05/Airsoft-Fields-in-Raleigh.jpg',
+            text: 'THE FUNNIEST MODE OF AIRSOFT',
           },
           {
             src: 'https://images.squarespace-cdn.com/content/v1/5ac9360aaa49a16d3b6ef162/1704673733296-7BXYQSGFXY5NJ4X8V93G/Untitled+design+%285%29.png?format=2500w',
+            text: 'WELCOME TO JOIN US',
           },
         ],
       tab: 'option-1',
@@ -485,19 +497,32 @@ meta:
 </route>
 
 <style>
-.v-slide-group--vertical .v-tab__slider {
-    top: 0;
-    height: 100%;
-    width: 100% !important;
-    background: rgba(45,75,42,1);
+.v-tab-item--selected {
+    background: rgb(122, 154, 94);
     z-index: -1;
 }
 
 .scrollable-card {
-  max-height: 310px;
+  max-height: 750px;
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: #7A9A5E #D1C18B;
+}
+
+.scrollable-option {
+  max-height: 112px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #7A9A5E #D1C18B;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.tab-item {
+  min-width: 150px;
+  white-space: nowrap;
 }
 
 .background-home {
@@ -509,5 +534,14 @@ meta:
   padding-top: 0px;
   background: url(../../img/soldier.jpg) no-repeat;
   background-size: cover;
+}
+
+.my-animation {
+  display: inline-block;
+  margin: 25rem;
+  margin-left: 2rem;
+  color: white;
+  animation: lightSpeedInRight;
+  animation-duration: 2s;
 }
 </style>
