@@ -1,7 +1,7 @@
 <template>
   <v-app-bar>
     <v-container class="d-flex align-center justify-space-between bg-primary" style="margin-left: 0px; margin-right: 0px; max-width: 1910px;">
-      <v-btn to="/" :active="false">Survivor‘s Quest</v-btn>
+      <v-btn to="/" :active="false" style="font-size: 20px;">Survivor‘s Quest</v-btn>
       <v-sheet
         v-for="n in 1"
         :key="n"
