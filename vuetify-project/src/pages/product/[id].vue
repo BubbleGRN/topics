@@ -48,7 +48,7 @@ const product = ref({
   description: '',
   image: '',
   sell: true,
-  category: 'food'
+  category: 'gun'
 })
 
 const getProduct = async () => {

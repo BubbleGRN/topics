@@ -171,7 +171,7 @@ const schema = yup.object({
   category: yup
     .string()
     .required(t('api.productCategoryRequired'))
-    .oneOf(['gun', 'vest', 'backage', 'helmat','bb','others'], t('api.productCategoryInvalid')),
+    .oneOf(['gun', 'vest', 'backpack', 'helmat','bb','others'], t('api.productCategoryInvalid')),
   sell: yup
     .boolean()
     .required(t('api.productSellRequired')),
@@ -194,7 +194,7 @@ const sell = useField('sell')
 const categoryOptions = computed(() => [
   { text: t('productCategory.gun'), value: 'gun' },
   { text: t('productCategory.vest'), value: 'vest' },
-  { text: t('productCategory.backage'), value: 'backage' },
+  { text: t('productCategory.backpack'), value: 'backpack' },
   { text: t('productCategory.helmat'), value: 'helmat' },
   { text: t('productCategory.bb'), value: 'bb' },
   { text: t('productCategory.others'), value: 'others' },

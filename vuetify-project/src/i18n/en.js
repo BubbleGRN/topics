@@ -71,7 +71,7 @@ export default {
   productCategory: {
     gun: 'gun',
     vest: 'vest',
-    backage: 'backage',
+    backpack: 'backpack',
     helmat: 'helmat',
     bb: 'bb',
     others: 'others'

@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="activity_position">
     <v-row>
       <v-col cols="12" md="4">
     <v-row>
@@ -52,12 +52,55 @@
       <v-spacer></v-spacer>
       <v-btn color="secondary">創建</v-btn>
     </v-card-title>
-    <v-card-text class="bg-bright">
-      <v-btn></v-btn>
-    </v-card-text>
+    <v-card class="bg-bright ms-6" width="95%" height="90%">
+      <v-card-item>
+        <v-row>
+          <v-col v-for="(event, index) in eventes" :key="event._id" cols="6">
+            <v-card class="d-flex flex-column align-center pa-3" @click="openDialog(index)">
+          <v-img :src="event.image" height="200px" contain></v-img>
+
+          <v-card-title>{{ event.name }}</v-card-title>
+          <v-card-subtitle>價格: ${{ event.price }}</v-card-subtitle>
+          <v-card-subtitle>主持人: {{ event.host }}</v-card-subtitle>
+
+          <!-- 可選的顯示其他基本資料 -->
+          <v-card-actions>
+            <v-btn color="primary" @click="openDialog(index)">查看詳細資訊</v-btn>
+          </v-card-actions>
+        </v-card>
+          </v-col>
+          <v-col cols="6">
+            <v-btn class="d-flex flex-column" style="width: 100%; height: 100%; padding: 0;">
+            <v-card>
+              <v-card-title>活動2</v-card-title><br>
+              <v-card-subtitle>$400</v-card-subtitle><br>
+              <v-card-text>主持人:XXX</v-card-text>
+            </v-card>
+            </v-btn>
+          </v-col>
+        </v-row>
+      </v-card-item>
+    </v-card>
 </v-card>
 </v-col>
 </v-row>
+
+<v-dialog v-for="(event, index) in eventes" :key="'dialog-' + event._id" v-model="dialogStates[index]" max-width="500px">
+      <v-card>
+        <v-card-title class="headline">{{ event.name }}</v-card-title>
+
+        <v-card-text>
+          <p>價格：${{ event.price }}</p>
+          <p>主持人：{{ event.host }}</p>
+          <p>保險：{{ event.insurance ? '有' : '無' }}</p>
+          <p>{{ event.description }}</p>
+        </v-card-text>
+
+        <v-card-actions>
+          <v-btn color="blue" @click="closeDialog(index)">關閉</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -89,7 +132,39 @@
       tab: 'option-1',
       }
     },
+}
+
+import { ref, onMounted } from 'vue'
+import { useAxios } from '@/composables/axios' // 假設這是你用來調用API的自定義組件
+
+const { api } = useAxios()
+const items = ref([])
+const dialogStates = ref([])
+
+const getItems = async () => {
+  try {
+    const response = await api.get('/events') // 假設你的後端 API 是這樣
+    items.value = response.data
+    // 根據資料長度設置對話框狀態的初始值（每個項目一個對應的對話框狀態）
+    dialogStates.value = new Array(items.value.length).fill(false)
+  } catch (error) {
+    console.error('無法獲取活動資料', error)
   }
+}
+
+const openDialog = (index) => {
+  dialogStates.value[index] = true
+}
+
+// 關閉對話框
+const closeDialog = (index) => {
+  dialogStates.value[index] = false
+}
+
+// 只在組件掛載時載入資料
+onMounted(() => {
+  getItems()
+})
 </script>
 
 <route lang="yaml">
@@ -101,7 +176,7 @@ meta:
 
 <style>
 .v-slide-group--vertical .v-tab__slider {
-    top: 0;
+    top: 68px;
     height: 100%;
     width: 100% !important;
     background: rgba(45,75,42,1);
@@ -124,5 +199,25 @@ meta:
   padding-top: 0px;
   background: url(../../img/soldier.jpg) no-repeat;
   background-size: cover;
+}
+
+.activity_position {
+  position: relative;
+  top: 60px;
+}
+
+.v-btn__content {
+  width: 100%;
+}
+
+.v-card-item .v-card {
+  background: #7A9A5E;
+  width: 100%;
+  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 20px;
 }
 </style>

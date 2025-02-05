@@ -71,7 +71,7 @@ export default {
   productCategory: {
     gun: '氣槍',
     vest: '背心護具',
-    backage: '背包',
+    backpack: '背包',
     helmat: '頭盔',
     bb: '子彈',
     others: '其他'
