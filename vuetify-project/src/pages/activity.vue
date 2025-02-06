@@ -55,28 +55,28 @@
     <v-card class="bg-bright ms-6" width="95%" height="90%">
       <v-card-item>
         <v-row>
-          <v-col v-for="(event, index) in eventes" :key="event._id" cols="6">
-            <v-card class="d-flex flex-column align-center pa-3" @click="openDialog(index)">
-          <v-img :src="event.image" height="200px" contain></v-img>
+          <v-col cols="6">
+                <v-card class="d-flex flex-column align-center pa-3">
+                <v-img :src="event.image" height="200px" contain></v-img>
+                <v-card-title>{{ event.name }}</v-card-title>
+                <v-card-subtitle>價格: ${{ event.price }}</v-card-subtitle>
+                <v-card-subtitle>主持人: {{ event.host }}</v-card-subtitle>
 
-          <v-card-title>{{ event.name }}</v-card-title>
-          <v-card-subtitle>價格: ${{ event.price }}</v-card-subtitle>
-          <v-card-subtitle>主持人: {{ event.host }}</v-card-subtitle>
-
-          <!-- 可選的顯示其他基本資料 -->
-          <v-card-actions>
-            <v-btn color="primary" @click="openDialog(index)">查看詳細資訊</v-btn>
-          </v-card-actions>
-        </v-card>
+                <!-- 可選的顯示其他基本資料 -->
+                <v-card-actions>
+                  <v-btn color="primary" @click="openDialog(activity)">查看詳細資訊</v-btn>
+                </v-card-actions>
+              </v-card>
           </v-col>
           <v-col cols="6">
-            <v-btn class="d-flex flex-column" style="width: 100%; height: 100%; padding: 0;">
-            <v-card>
+            <v-card class="d-flex flex-column" style="width: 100%; height: 100%; padding: 0;">
               <v-card-title>活動2</v-card-title><br>
               <v-card-subtitle>$400</v-card-subtitle><br>
               <v-card-text>主持人:XXX</v-card-text>
+              <v-card-actions>
+            <v-btn color="primary">查看詳細資訊</v-btn>
+          </v-card-actions>
             </v-card>
-            </v-btn>
           </v-col>
         </v-row>
       </v-card-item>
@@ -85,85 +85,87 @@
 </v-col>
 </v-row>
 
-<v-dialog v-for="(event, index) in eventes" :key="'dialog-' + event._id" v-model="dialogStates[index]" max-width="500px">
+<v-dialog v-model="dialog.open" persistent>
+    <v-form :disabled="isSubmitting" @submit.prevent="submit">
       <v-card>
-        <v-card-title class="headline">{{ event.name }}</v-card-title>
-
+        <v-card-title>{{ $t(dialog.id ? 'adminProduct.edit' : 'adminProduct.new') }}</v-card-title>
         <v-card-text>
-          <p>價格：${{ event.price }}</p>
-          <p>主持人：{{ event.host }}</p>
-          <p>保險：{{ event.insurance ? '有' : '無' }}</p>
-          <p>{{ event.description }}</p>
+          <v-text-field
+            v-model="name.value.value"
+            :label="$t('product.name')"
+            :error-messages="name.errorMessage.value"
+          ></v-text-field>
+          <v-text-field
+            v-model="price.value.value"
+            :label="$t('product.price')"
+            :error-messages="price.errorMessage.value"
+            type="number" min="0"
+          ></v-text-field>
+          <v-select
+            v-model="category.value.value"
+            :error-messages="category.errorMessage.value"
+            :items="categoryOptions"
+            :label="$t('product.category')"
+            item-title="text"
+            item-value="value"
+          ></v-select>
+          <v-checkbox
+            v-model="sell.value.value"
+            :label="$t('product.onSell')"
+            :error-messages="sell.errorMessage.value"
+          ></v-checkbox>
+          <v-textarea
+            v-model="description.value.value"
+            :label="$t('product.description')"
+            :error-messages="description.errorMessage.value"
+          ></v-textarea>
+          <VueFileAgent
+            ref="fileAgent" v-model="fileRecords"
+            v-model:raw-model-value="rawFileRecords"
+            accept="image/jpeg,image/png"
+            deletable
+            max-size="1MB"
+            :help-text="$t('fileAgent.helpText')"
+            :error-text="{ type: $t('fileAgent.errorType'), size: $t('fileAgent.errorSize') }"
+          ></VueFileAgent>
         </v-card-text>
-
         <v-card-actions>
-          <v-btn color="blue" @click="closeDialog(index)">關閉</v-btn>
+          <v-btn @click="closeDialog">{{ $t('adminProduct.cancel') }}</v-btn>
         </v-card-actions>
       </v-card>
-    </v-dialog>
+    </v-form>
+  </v-dialog>
   </v-container>
 </template>
 
-<script>
-  export default {
-    data () {
-      return {
-        colors: [
-          'indigo',
-          'warning',
-          'pink darken-2',
-          'red lighten-1',
-          'deep-purple accent-4',
-        ],
-        items: [
-          {
-            src: 'https://bookmestatic.net.nz/bookme-product-images/products/71967/71967_image1_fzQYhXxiaQ_AJGR_20240128_140907.jpg',
-          },
-          {
-            src: 'https://www.abbeysupply.com/res/Airsoft-tactics.jpg',
-          },
-          {
-            src: 'https://www.xtremeparkadventures.com/wp-content/uploads/2019/05/Airsoft-Fields-in-Raleigh.jpg',
-          },
-          {
-            src: 'https://images.squarespace-cdn.com/content/v1/5ac9360aaa49a16d3b6ef162/1704673733296-7BXYQSGFXY5NJ4X8V93G/Untitled+design+%285%29.png?format=2500w',
-          },
-        ],
-      tab: 'option-1',
-      }
+<script setup>
+  const items = [
+    {
+      src: 'https://bookmestatic.net.nz/bookme-product-images/products/71967/71967_image1_fzQYhXxiaQ_AJGR_20240128_140907.jpg',
     },
-}
-
-import { ref, onMounted } from 'vue'
-import { useAxios } from '@/composables/axios' // 假設這是你用來調用API的自定義組件
-
-const { api } = useAxios()
-const items = ref([])
-const dialogStates = ref([])
-
-const getItems = async () => {
-  try {
-    const response = await api.get('/events') // 假設你的後端 API 是這樣
-    items.value = response.data
-    // 根據資料長度設置對話框狀態的初始值（每個項目一個對應的對話框狀態）
-    dialogStates.value = new Array(items.value.length).fill(false)
-  } catch (error) {
-    console.error('無法獲取活動資料', error)
-  }
-}
-
-const openDialog = (index) => {
-  dialogStates.value[index] = true
-}
-
-// 關閉對話框
-const closeDialog = (index) => {
-  dialogStates.value[index] = false
-}
-
-// 只在組件掛載時載入資料
-onMounted(() => {
-  getItems()
+    {
+      src: 'https://www.abbeysupply.com/res/Airsoft-tactics.jpg',
+    },
+    {
+      src: 'https://www.xtremeparkadventures.com/wp-content/uploads/2019/05/Airsoft-Fields-in-Raleigh.jpg',
+    },
+    {
+      src: 'https://images.squarespace-cdn.com/content/v1/5ac9360aaa49a16d3b6ef162/1704673733296-7BXYQSGFXY5NJ4X8V93G/Untitled+design+%285%29.png?format=2500w',
+    },
+]
+const headers = computed(() => {
+  return [
+    { title: 'ID', key: '_id', sortable: true },
+    { title: ('product.image'), key: 'image', sortable: false },
+    { title: ('product.name'), key: 'name', sortable: true },
+    { title: ('product.description'), key: 'description', sortable: true },
+    { title: ('product.price'), key: 'price', sortable: true },
+    { title: ('product.category'), key: 'category', sortable: true },
+    { title: ('product.sell'), key: 'sell', sortable: true },
+    { title: ('product.createdAt'), key: 'createdAt', sortable: true },
+    { title: ('product.updatedAt'), key: 'updatedAt', sortable: true },
+    { title: ('adminProduct.edit'), key: 'edit', sortable: false },
+  ]
 })
 </script>
 
