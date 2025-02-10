@@ -6,7 +6,8 @@
       <v-sheet
         v-for="n in 1"
         :key="n"
-        class="ma-2 pa-2 bg-secondary"
+        class="ma-2 pa-2"
+        :style="{color:'white', backgroundColor:backgroundColor}"
       >
       <template v-for="nav of navs" :key="nav.to">
         <v-btn v-if="nav.show" :to="nav.to" :prepend-icon="nav.icon">
@@ -18,15 +19,11 @@
     <v-sheet
         v-for="n in 1"
         :key="n"
-        class="ma-2 pa-2 bg-secondary"
+        class="ma-2 pa-2"
+        :style="{color:'white', backgroundColor:backgroundColor}"
       >
       <v-btn v-if="user.isLoggedIn" prepend-icon="mdi-account-arrow-right" @click="logout">{{ $t('nav.logout') }}</v-btn>
       <v-menu>
-        <template #activator="{ props }">
-          <v-btn v-bind="props">
-            <v-icon icon="mdi-translate"></v-icon>
-          </v-btn>
-        </template>
         <v-list>
           <v-list-item
             v-for="lang in langs" :key="lang.value"
@@ -51,30 +48,30 @@ import { useI18n } from 'vue-i18n'
 import { useUserStore } from '@/stores/user'
 import { useAxios } from '@/composables/axios'
 import { useSnackbar } from 'vuetify-use-dialog'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute  } from 'vue-router'
 
 const { t } = useI18n()
 const user = useUserStore()
 const { apiAuth } = useAxios()
 const createSnackbar = useSnackbar()
 const router = useRouter()
+const route = useRoute()
 
-const appBarHeight = ref(80)  // 初始高度
-const hasHeightIncreased = ref(false)  // 標誌位，防止多次改變高度
-const appBarClass = ref('transparent-app-bar')  // 初始 class，透明背景
+const appBarHeight = ref(80)
+const hasHeightIncreased = ref(false)
+const appBarClass = ref('transparent-app-bar')
 
 
 const checkScrollPosition = () => {
-  if (window.scrollY > 100 && !hasHeightIncreased.value) {  // 滾動超過 100px 時
-    appBarHeight.value = 120  // 增加高度
-    appBarClass.value = 'scrolled-app-bar'  // 改變 class，這樣背景顏色會改變
-    hasHeightIncreased.value = true  // 設置標誌為已經改變過
+  if (window.scrollY > 100 && !hasHeightIncreased.value) {
+    appBarHeight.value = 120
+    appBarClass.value = 'scrolled-app-bar'
+    hasHeightIncreased.value = true
 
   } else if (window.scrollY <= 100 && hasHeightIncreased.value) {
-    // 回到頂端時恢復透明背景並還原原來的高度
-    appBarHeight.value = 80  // 恢復到原始高度
-    appBarClass.value = 'transparent-app-bar'  // 恢復透明背景
-    hasHeightIncreased.value = false  // 重置標誌
+    appBarHeight.value = 80
+    appBarClass.value = 'transparent-app-bar'
+    hasHeightIncreased.value = false
   }
 }
 
@@ -97,6 +94,32 @@ const navs = computed(() => {
     { to: '/orders', text: t('nav.orders'), icon: 'mdi-format-list-bulleted', show: user.isLoggedIn },
     { to: '/admin', text: t('nav.admin'), icon: 'mdi-cog', show: user.isLoggedIn && user.isAdmin },
   ]
+})
+
+const backgroundColor = computed(() => {
+  if (route.path === '/activity') {
+    return '#427542';
+  } else if (route.path === '/shop') {
+    return '#427542';
+  } else if (route.path === '/cart') {
+    return '#427542';
+  } else if (route.path === '/orders') {
+    return '#427542';
+  } else if (route.path === '/InsideShop_Gun') {
+    return '#427542';
+  } else if (route.path === '/InsideShop_Vest') {
+    return '#427542';
+  } else if (route.path === '/InsideShop_Backpack') {
+    return '#427542';
+  } else if (route.path === '/InsideShop_Helmet') {
+    return '#427542';
+  } else if (route.path === '/InsideShop_BB') {
+    return '#427542';
+  } else if (route.path === '/InsideShop_Other') {
+    return '#427542';
+  } else {
+    return 'transparent';
+  }
 })
 
 const langs = [
@@ -141,13 +164,14 @@ const logout = async () => {
   right: 0;
   z-index: 10;
   display: flex;
-  align-items: center; /* 確保內容垂直置中 */
-  transition: height 0.3s ease; /* 平滑過渡導覽列高度 */
+  justify-content: center;
+  transition: height 0.3s ease;
 }
+
 
 .v-btn-align {
   display: flex;
-  align-items: center; /* 確保內容垂直置中 */
-  transition: height 0.3s ease; /* 平滑過渡導覽列高度 */
+  align-items: center;
+  transition: height 0.3s ease;
 }
 </style>

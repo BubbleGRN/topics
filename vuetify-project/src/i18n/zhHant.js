@@ -15,6 +15,7 @@ export default {
     adminOrders: '訂單管理',
     home: '首頁',
     product: '商品',
+    adminEvents: '活動內容',
   },
   register: {
     submit: '建立帳號',
@@ -43,13 +44,21 @@ export default {
     account: '帳號'
   },
   admin: {
-    index: '選擇管理項目'
+    index: '選擇管理項目',
   },
   adminProduct: {
     new: '新增商品',
     edit: '編輯商品',
     cancel: '取消',
     submit: '確認',
+    newSuccess: '新增成功',
+    editSuccess: '編輯成功',
+  },
+  adminEvent: {
+    new: '新增活動',
+    edit: '編輯',
+    cancel: '取消',
+    submit: '送出',
     newSuccess: '新增成功',
     editSuccess: '編輯成功',
   },
@@ -67,6 +76,14 @@ export default {
     addCart: '加入購物車',
     addCartQuantityInvalid: '數量格式不符',
     addCartSuccess: '加入購物車成功',
+  },
+  event: {
+    image: '圖片',
+    name: '活動名字',
+    date: '日期',
+    location: '活動位置',
+    description: '活動介紹',
+    price: '費用',
   },
   productCategory: {
     gun: '氣槍',

@@ -6,5 +6,16 @@ import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
 export default [
   { languageOptions: { globals: globals.node } },
   pluginJs.configs.recommended,
-  eslintPluginPrettierRecommended,
+  {
+    ...eslintPluginPrettierRecommended,
+    rules: {
+      ...eslintPluginPrettierRecommended.rules,
+      'prettier/prettier': [
+        'error',
+        {
+          endOfLine: 'auto', // 自动选择换行符，避免回车符相关的错误
+        },
+      ],
+    },
+  },
 ]

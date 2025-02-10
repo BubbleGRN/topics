@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row>
+    <v-row style="position: relative; top: 80px;">
       <v-col cols="12">
         <h1 class="text-center">{{ $t('nav.cart') }}</h1>
       </v-col>

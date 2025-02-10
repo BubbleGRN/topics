@@ -5,7 +5,7 @@
     hide-delimiters
     cycle
     hide-delimiter-background
-    style="width: 100vw; height: 100vh;"
+    style="width: 100vw; height: 1020px;"
   >
     <v-carousel-item
       v-for="(item, i) in items"
@@ -609,8 +609,6 @@ meta:
   white-space: nowrap;
 }
 
-
-
 .my-animation {
   display: inline-block;
   margin: 25rem;
@@ -634,5 +632,9 @@ meta:
   height: 1900px;
   position: relative;
   top:-200px;
+}
+
+#ava .v-img__img{
+  filter:brightness(70%);
 }
 </style>
