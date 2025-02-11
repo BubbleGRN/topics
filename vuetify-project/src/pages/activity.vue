@@ -31,8 +31,8 @@
           <template v-if="user.role === 1" #[`item.edit`]="{ item }">
             <v-btn icon="mdi-pencil" variant="text" @click="openDialog(item)"></v-btn>
           </template>
-          <template #[`item.detail`]="{ item }">
-            <v-btn class="bg-primary-darken-1" variant="text" @click="openDialog-detail(item)">詳細</v-btn>
+          <template #[`item.join`]="{ item }">
+            <v-btn class="bg-primary-darken-1" variant="text" @click="openDialog-join(item)">加入</v-btn>
           </template>
         </v-data-table>
       </v-col>
@@ -71,6 +71,15 @@
             :label="$t('event.name')"
             :error-messages="name.errorMessage.value"
           ></v-text-field>
+
+          <v-select
+          v-model="status.value.value"
+          item-title="text"
+          :items="statusOptions"
+          :label="$t('event.status')"
+          :error-messages="status.errorMessage.value"
+          >
+          </v-select>
 
           <v-text-field
             v-model="date.value.value"
@@ -131,25 +140,27 @@ const { t } = useI18n()
 const { apiAuth } = useAxios()
 const createSnackbar = useSnackbar()
 const user = useUserStore()
-console.log(user.role)
 const events = reactive([])
 const search = ref('')
 const headers = computed(() => {
+  const isAdmin = user.role === 1;
   return [
-    { title: t('event.name'), key: 'name', sortable: true },
+    { title: t('event.name'), key: 'name', sortable: false },
     { title: t('event.image'), key: 'image', sortable: false },
     { title: t('event.date'), key: 'date', sortable: true },
     { title: t('event.location'), key: 'location', sortable: true },
-    { title: t('event.description'), key: 'description', sortable: true },
+    { title: t('event.description'), key: 'description', sortable: false },
     { title: t('event.price'), key: 'price', sortable: true },
-    { title: t('adminEvent.edit'), key: 'edit', sortable: false },
-    { title: t('event.detail'), key: 'detail', sortable: false },
+    { title: t('event.status'), key: 'status', sortable: true },
+    (isAdmin ? [{ title: t('adminEvent.edit'), key: 'edit', sortable: false}] : []),
+    { title: t('event.join'), key: 'join', sortable: false },
   ]
 })
 
 const getEvents = async () => {
   try {
     const { data } = await apiAuth.get('/event/all')
+    console.log(data.result)
     events.push(...data.result)
   } catch (error) {
     console.log(error)
@@ -163,6 +174,15 @@ const getEvents = async () => {
 }
 getEvents()
 
+const statusOptions = [
+  {
+    text:'叛徒遊戲',value:'叛徒遊戲: 依人數兩隊之中2~3人為敵對叛徒，叛徒主要任務為暗中清除自方的所有選手，而非叛徒的選手則是要將叛徒與敵隊射殺。這之中2~3分鐘在地圖的某處會有卡片可得知叛徒的部分特徵。'
+},
+  {
+    text:'劇情扮演',value:'劇情扮演: 雙方各分配一半人數進行對戰，一但雙方人數減少至一半時，被出局人與神秘人進行第三隊的加入，至於 一、二 隊可依照自行意願是否加入敵隊(僅一 、 二 隊)進行合作，主要任務為第三隊全滅勝利。'
+  },
+]
+
 const dialog = ref({
   open: false,
   id: ''
@@ -175,6 +195,7 @@ const openDialog = (item) => {
     location.value.value = item.location
     price.value.value = item.price
     description.value.value = item.description
+    status.value = item.status
   }
   dialog.value.open = true
 }
@@ -200,6 +221,9 @@ const schema = yup.object({
   description: yup
     .string()
     .required(t('api.eventDescriptionRequired')),
+  status: yup
+    .string()
+    .required(t('api.eventStatusRequired')),
   price: yup
     .number()
     .required(t('api.eventPriceRequired')),
@@ -212,6 +236,7 @@ const { handleSubmit, isSubmitting, resetForm } = useForm({
     date: '',
     location: '',
     description: '',
+    status:'',
     price: '',
   }
 })
@@ -220,10 +245,12 @@ const date = useField('date')
 const location = useField('location')
 const description = useField('description')
 const price = useField('price')
+const status = useField('status')
 const fileRecords = ref([])
 const rawFileRecords = ref([])
 
 const submit = handleSubmit(async (values) => {
+  console.log(values)
   if (fileRecords.value[0]?.error)      return
   if (dialog.value.id.length === 0 && fileRecords.value.length === 0) {
     createSnackbar({
@@ -241,6 +268,7 @@ const submit = handleSubmit(async (values) => {
     fd.append('price', values.price)
     fd.append('description', values.description)
     fd.append('location', values.location)
+    fd.append('status', values.status)
     fd.append('date', values.date)
     if (fileRecords.value.length > 0) {
       fd.append('image', fileRecords.value[0].file)

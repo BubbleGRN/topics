@@ -1,12 +1,12 @@
 <template>
-  <v-app>
   <v-app-bar :class="appBarClass" app :style="{ height: appBarHeight + 'px' }">
     <v-container class="d-flex align-center justify-space-between" style="margin-left: 0px; margin-right: 0px; max-width: 1910px;">
-      <v-btn to="/" :active="false" style="font-size: 2rem; color: #D1C18B;">Survivor‘s Quest</v-btn>
+      <v-btn to="/" :active="false" :style="{ backgroundColor: backgroundColor }" style="height: 50px; font-size: 2rem; color: #D1C18B;">Survivor‘s Quest</v-btn>
       <v-sheet
         v-for="n in 1"
         :key="n"
-        class="ma-2 pa-2"
+        class="pa-2"
+        style="margin-right: 170px;"
         :style="{color:'white', backgroundColor:backgroundColor}"
       >
       <template v-for="nav of navs" :key="nav.to">
@@ -19,9 +19,10 @@
     <v-sheet
         v-for="n in 1"
         :key="n"
-        class="ma-2 pa-2"
+        class="ma-10 pa-2"
         :style="{color:'white', backgroundColor:backgroundColor}"
       >
+      <v-btn v-if="user.isLoggedIn" prepend-icon="mdi-account-box" to='/account'>{{ $t('nav.account') }}</v-btn>
       <v-btn v-if="user.isLoggedIn" prepend-icon="mdi-account-arrow-right" @click="logout">{{ $t('nav.logout') }}</v-btn>
       <v-menu>
         <v-list>
@@ -36,10 +37,9 @@
     </v-sheet>
     </v-container>
   </v-app-bar>
-  <router-view></router-view>
-  <v-main>
+  <v-main style="position: relative;" :style="{ top: main }">
+    <router-view></router-view>
   </v-main>
-</v-app>
 </template>
 
 <script setup>
@@ -105,20 +105,52 @@ const backgroundColor = computed(() => {
     return '#427542';
   } else if (route.path === '/orders') {
     return '#427542';
-  } else if (route.path === '/InsideShop_Gun') {
+  } else if (route.path === '/InsideShop/InsideShop_Gun') {
     return '#427542';
-  } else if (route.path === '/InsideShop_Vest') {
+  } else if (route.path === '/InsideShop/InsideShop_Vest') {
     return '#427542';
-  } else if (route.path === '/InsideShop_Backpack') {
+  } else if (route.path === '/InsideShop/InsideShop_Backpack') {
     return '#427542';
-  } else if (route.path === '/InsideShop_Helmet') {
+  } else if (route.path === '/InsideShop/InsideShop_Helmet') {
     return '#427542';
-  } else if (route.path === '/InsideShop_BB') {
+  } else if (route.path === '/InsideShop/InsideShop_BB') {
     return '#427542';
-  } else if (route.path === '/InsideShop_Other') {
+  } else if (route.path === '/InsideShop/InsideShop_Other') {
+    return '#427542';
+  } else if (route.path === '/user/account') {
     return '#427542';
   } else {
     return 'transparent';
+  }
+})
+
+const main = computed(() => {
+  if (route.path === '/') {
+    return '-60px';
+  } else if (route.path === '/shop') {
+    return '-60px';
+  } else if (route.path === '/cart') {
+    return '-60px';
+  } else if (route.path === '/orders') {
+    return '-60px';
+  } else if (route.path === '/InsideShop/InsideShop_Gun') {
+    return '-60px';
+  } else if (route.path === '/InsideShop/InsideShop_Vest') {
+    return '-60px';
+  } else if (route.path === '/InsideShop/InsideShop_Backpack') {
+    return '-60px';
+  } else if (route.path === '/InsideShop/InsideShop_Helmet') {
+    return '-60px';
+  } else if (route.path === '/InsideShop/InsideShop_BB') {
+    return '-60px';
+  } else if (route.path === '/InsideShop/InsideShop_Other') {
+    return '-60px';
+  } else if (route.path === '/user/account') {
+    return '-60px';
+  } else if (route.path === '/activity') {
+    return '-60px';
+  } else {
+    return '0px';
   }
 })
 
@@ -134,6 +166,7 @@ const logout = async () => {
     console.log(error)
   }
   user.logout()
+
   createSnackbar({
     text: t('logout.success'),
     snackbarProps: {
@@ -147,6 +180,7 @@ const logout = async () => {
 <style scoped>
 .transparent-app-bar {
   background-color: transparent !important;
+  background-image: linear-gradient(to bottom, rgba(13, 46, 10, 0.8) 60%, transparent);
   box-shadow: none !important;
   transition: background-color 0.3s ease, height 0.3s ease;
 }
@@ -168,6 +202,10 @@ const logout = async () => {
   transition: height 0.3s ease;
 }
 
+#main {
+  position: relative;
+  top: -60px;
+}
 
 .v-btn-align {
   display: flex;

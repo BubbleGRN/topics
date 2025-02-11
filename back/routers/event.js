@@ -5,7 +5,7 @@ import upload from '../middlewares/upload.js'
 
 const router = Router()
 
-router.post('/', auth.jwt, auth.admin, upload, event.create)
+router.post('/', auth.jwt, upload, event.create)
 router.get('/all', auth.jwt, event.getAll)
 router.get('/:id', event.getId)
 router.patch('/:id', auth.jwt, auth.admin, upload, event.edit)

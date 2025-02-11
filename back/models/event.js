@@ -23,6 +23,10 @@ const schema = new Schema(
       type: String,
       required: [true, 'eventImageRequired'],
     },
+    status: {
+      type: String,
+      required: [true, 'eventStatusRequired'],
+    },
     description: {
       type: String,
       required: [true, 'eventDescriptionRequired'],

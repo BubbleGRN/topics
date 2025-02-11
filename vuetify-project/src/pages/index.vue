@@ -552,19 +552,19 @@ import 'animate.css';
         items: [
           {
             src: 'https://bookmestatic.net.nz/bookme-product-images/products/71967/71967_image1_fzQYhXxiaQ_AJGR_20240128_140907.jpg',
-            text: 'MORE THAN A GAME',
+            text: 'Survive the Game, Conquer the Odds',
           },
           {
             src: 'https://www.abbeysupply.com/res/Airsoft-tactics.jpg',
-            text: 'THE BEST AIRSOFT ARENA',
+            text: 'Only the Strongest Will Endure',
           },
           {
             src: 'https://www.xtremeparkadventures.com/wp-content/uploads/2019/05/Airsoft-Fields-in-Raleigh.jpg',
-            text: 'THE FUNNIEST MODE OF AIRSOFT',
+            text: 'Play Smart, Stay Alive',
           },
           {
             src: 'https://images.squarespace-cdn.com/content/v1/5ac9360aaa49a16d3b6ef162/1704673733296-7BXYQSGFXY5NJ4X8V93G/Untitled+design+%285%29.png?format=2500w',
-            text: 'WELCOME TO JOIN US',
+            text: 'Outlast. Outplay. Outlive',
           },
         ],
       tab: 'option-1',

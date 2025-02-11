@@ -9,6 +9,7 @@ export default {
     cart: '購物車',
     activity: '活動',
     orders: '訂單',
+    account: '會員中心',
     admin: '管理',
     logout: '登出',
     adminProducts: '商品管理',
@@ -16,6 +17,8 @@ export default {
     home: '首頁',
     product: '商品',
     adminEvents: '活動內容',
+    joinedActivity: '已參加的活動',
+    rent: '租借項目',
   },
   register: {
     submit: '建立帳號',
@@ -84,6 +87,7 @@ export default {
     location: '活動位置',
     description: '活動介紹',
     price: '費用',
+    status: '選擇遊戲'
   },
   productCategory: {
     gun: '氣槍',
