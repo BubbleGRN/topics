@@ -143,7 +143,6 @@ const user = useUserStore()
 const events = reactive([])
 const search = ref('')
 const headers = computed(() => {
-  const isAdmin = user.role === 1;
   return [
     { title: t('event.name'), key: 'name', sortable: false },
     { title: t('event.image'), key: 'image', sortable: false },
@@ -152,7 +151,7 @@ const headers = computed(() => {
     { title: t('event.description'), key: 'description', sortable: false },
     { title: t('event.price'), key: 'price', sortable: true },
     { title: t('event.status'), key: 'status', sortable: true },
-    (isAdmin ? [{ title: t('adminEvent.edit'), key: 'edit', sortable: false}] : []),
+    { title: t('adminEvent.edit'), key: 'edit', sortable: false},
     { title: t('event.join'), key: 'join', sortable: false },
   ]
 })

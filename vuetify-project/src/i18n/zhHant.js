@@ -46,6 +46,10 @@ export default {
     price: '訂單金額',
     account: '帳號'
   },
+  rent: {
+    date: '到期日',
+    location: '租借使用位置',
+  },
   admin: {
     index: '選擇管理項目',
   },

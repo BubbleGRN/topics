@@ -12,9 +12,13 @@
         <p>{{ $t( 'productCategory.'+ product.category) }}</p>
         <p>{{ product.price }}</p>
         <p>{{ product.description }}</p>
-        <v-form :disabled="isSubmitting" @submit.prevent="submit">
+        <v-form :disabled="isCartSubmitting" @submit.prevent="submitCart">
           <v-text-field v-model.number="quantity.value.value" type="number" :error-messages="quantity.errorMessage.value"></v-text-field>
           <v-btn type="submit" prepend-icon="mdi-cart" :loading="isSubmitting">{{ $t('product.addCart') }}</v-btn>
+          <v-text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</v-text>
+        </v-form>
+        <v-form :disabled="isRentSubmitting" @submit.prevent="submitRent">
+          <v-btn type="submit" prepend-icon="mdi-send" :loading="isRentting" @click="openDialog(product)">{{ $t('product.addRent') }}</v-btn>
         </v-form>
       </v-col>
     </v-row>
@@ -22,6 +26,41 @@
   <v-overlay :model-value="!product.sell" class="align-center justify-center" scrim="black" opacity="0.8" persistent>
     <h1 class="text-center">{{ $t('api.productNotOnSell') }}</h1>
   </v-overlay>
+
+  <v-dialog v-model="dialog.open" persistent max-width="600px">
+    <v-form :disabled="isRentting" @submit.prevent="submitRent">
+      <v-card>
+        <v-card-title>
+          {{  $t('product.rent') }}
+        </v-card-title>
+        <v-card-text>
+          <v-text-field
+            v-model="name.value.value"
+            :label="$t('product.name')"
+            :error-messages="name.errorMessage.value"
+          ></v-text-field>
+
+          <v-text-field
+            v-model="date.value.value"
+            :label="$t('event.date')"
+            :error-messages="date.errorMessage.value"
+            type="date"
+          ></v-text-field>
+
+          <v-text-field
+            v-model="location.value.value"
+            :label="$t('event.location')"
+            :error-messages="location.errorMessage.value"
+          ></v-text-field>
+        </v-card-text>
+        <v-card-actions>
+          <v-btn @click="closeDialog">{{ $t('adminEvent.cancel') }}</v-btn>
+          <v-btn type="submit" :loading="isRentting">{{ $t('product.rentSubmit') }}</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-form>
+  </v-dialog>
+
 </template>
 
 <script setup>
@@ -63,7 +102,7 @@ const getProduct = async () => {
 }
 getProduct()
 
-const schema = yup.object({
+const cartSchema = yup.object({
   quantity: yup
     .number()
     .typeError(t('product.addCartQuantityInvalid'))
@@ -71,15 +110,15 @@ const schema = yup.object({
     .positive(t('product.addCartQuantityInvalid'))
     .integer(t('product.addCartQuantityInvalid'))
 })
-const { handleSubmit, isSubmitting } = useForm({
-  validationSchema: schema,
+const { handleSubmit: handleCartSubmit, isSubmitting: isCartSubmitting } = useForm({
+  validationSchema: cartSchema,
   initialValues: {
     quantity: 1
   }
 })
 const quantity = useField('quantity')
 
-const submit = handleSubmit(async (values) => {
+const submitCart = handleCartSubmit(async (values) => {
   if (!user.isLoggedIn) {
     router.push('/login')
     return
@@ -106,6 +145,78 @@ const submit = handleSubmit(async (values) => {
     })
   }
 })
+
+const rentSchema = yup.object({
+  name: yup.string().required(t('product.nameRequired')),
+  date: yup.date().required(t('product.dateRequired')),
+  location: yup.string().required(t('product.locationRequired')),
+})
+
+const { handleSubmit: handleRentSubmit, isSubmitting: isRentting } = useForm({
+  validationSchema: rentSchema,
+  initialValues: {
+    name: '',
+    date: '',
+    location: ''
+  }
+})
+
+const name = useField('name')
+const date = useField('date')
+const location = useField('location')
+
+const submitRent = handleRentSubmit(async () => {
+  if (!user.isLoggedIn) {
+    router.push('/login')
+    return
+  }
+
+  try {
+    const { data } = await apiAuth.patch('/user/rent', {
+      product: product.value._id,
+      name: name.value.value,
+      date: date.value.value,
+      location: location.value.value,
+    })
+    user.rent = data.result
+
+    createSnackbar({
+      text: t('product.addRentSuccess'),
+      snackbarProps: {
+        color: 'green'
+      }
+    })
+    closeDialog()
+  } catch (error) {
+    console.log(error)
+    createSnackbar({
+      text: t('api.' + (error?.response?.data?.message || 'unknownError')),
+      snackbarProps: {
+        color: 'red'
+      }
+    })
+  }
+})
+
+const dialog = ref({
+  open: false,
+  id: ''
+})
+
+const openDialog = (product) => {
+  if (product) {
+    dialog.value.id = product._id
+    name.value.value = product.name
+    date.value.value = ''
+    location.value.value = ''
+  }
+  dialog.value.open = true
+}
+
+const closeDialog = () => {
+  dialog.value.id = ''
+  dialog.value.open = false
+}
 </script>
 
 <route lang="yaml">

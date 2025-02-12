@@ -16,6 +16,26 @@ const cartSchema = new Schema({
   },
 })
 
+const rentSchema = new Schema({
+  product: {
+    type: ObjectId,
+    ref: 'products',
+    required: [true, 'userRentProductRequired'],
+  },
+  name: {
+    type: String,
+    required: [true, 'userRentNameRequired'],
+  },
+  date: {
+    type: Date,
+    required: [true, 'userRentDateRequired'],
+  },
+  location: {
+    type: String,
+    required: [true, 'userRentLocationRequired'],
+  },
+})
+
 const schema = new Schema(
   {
     account: {
@@ -52,6 +72,9 @@ const schema = new Schema(
     role: {
       type: Number,
       default: UserRole.USER,
+    },
+    rent: {
+      type: [rentSchema],
     },
     cart: {
       type: [cartSchema],

@@ -188,3 +188,92 @@ export const updateCart = async (req, res) => {
     }
   }
 }
+
+export const getRent = async (req, res) => {
+  try {
+    const result = await User.findById(req.user._id, 'rent').populate('rent.product')
+    res.status(StatusCodes.OK).json({
+      success: true,
+      message: '',
+      result: result.rent,
+    })
+  } catch (error) {
+    console.log(error)
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      success: false,
+      message: 'serverError',
+    })
+  }
+}
+
+export const updateRent = async (req, res) => {
+  try {
+    // 檢查傳入的商品 ID 格式
+    if (!validator.isMongoId(req.body.product)) throw new Error('ID')
+    // 檢查購物車內有沒有商品
+    const idx = req.user.rent.findIndex((item) => item.product.toString() === req.body.product)
+    if (idx > -1) {
+      // 有商品，修改數量
+      const updatedQuantity = req.user.rent[idx].quantity + parseInt(req.body.quantity)
+      if (updatedQuantity > 0) {
+        // 修改後大於 0，修改數量
+        req.user.rent[idx].quantity = updatedQuantity
+        req.user.rent[idx].name = req.body.name
+        req.user.rent[idx].date = req.body.date
+        req.user.rent[idx].location = req.body.location
+      } else {
+        // 修改後小於等於 0，刪除商品
+        req.user.rent.splice(idx, 1)
+      }
+    } else {
+      // 沒有商品，檢查商品是否存在
+      const product = await Product.findById(req.body.product).orFail(new Error('NOT FOUND'))
+      // 商品沒有上架，錯誤
+      if (!product.sell) throw new Error('SELL')
+
+      req.user.rent.push({
+        product: req.body.product,
+        quantity: req.body.quantity,
+        name: req.body.name,
+        date: req.body.date,
+        location: req.body.location,
+      })
+    }
+
+    await req.user.save()
+    res.status(StatusCodes.OK).json({
+      success: true,
+      message: '',
+      result: req.user.rent,
+    })
+  } catch (error) {
+    console.log(error)
+    if (error.name === 'CastError' || error.message === 'ID') {
+      res.status(StatusCodes.NOT_FOUND).json({
+        success: false,
+        message: 'productIdInvalid',
+      })
+    } else if (error.message === 'NOT FOUND') {
+      res.status(StatusCodes.BAD_REQUEST).json({
+        success: false,
+        message: 'productNotFound',
+      })
+    } else if (error.message === 'SELL') {
+      res.status(StatusCodes.BAD_REQUEST).json({
+        success: false,
+        message: 'productNotOnSell',
+      })
+    } else if (error.name === 'ValidationError') {
+      const key = Object.keys(error.errors)[0]
+      res.status(StatusCodes.BAD_REQUEST).json({
+        success: false,
+        message: error.errors[key].message,
+      })
+    } else {
+      res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+        success: false,
+        message: 'serverError',
+      })
+    }
+  }
+}
