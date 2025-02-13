@@ -33,7 +33,7 @@ const navs = computed(() => {
 
 const backgroundStyle = ref({
   background: 'url(../../img/background2.png) no-repeat',
-  backgroundSize: '1647px 1024px',
+  backgroundSize: '100vw 100vh',
   transition: 'background-color 0.3s',
 });
 

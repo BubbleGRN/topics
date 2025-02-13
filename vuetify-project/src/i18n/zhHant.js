@@ -47,7 +47,8 @@ export default {
     account: '帳號'
   },
   rent: {
-    date: '到期日',
+    rentdate: '租借日',
+    returndate: '歸還日',
     location: '租借使用位置',
   },
   admin: {
@@ -83,11 +84,16 @@ export default {
     addCart: '加入購物車',
     addCartQuantityInvalid: '數量格式不符',
     addCartSuccess: '加入購物車成功',
+    rent: '租借',
+    addRent: '租借物品',
+    rentSubmit: '租借資料送出',
+    addRentSuccess: '租借成功',
   },
   event: {
     image: '圖片',
     name: '活動名字',
-    date: '日期',
+    rentdate: '租借日期',
+    returndate: '歸還日期',
     location: '活動位置',
     description: '活動介紹',
     price: '費用',

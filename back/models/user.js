@@ -26,9 +26,13 @@ const rentSchema = new Schema({
     type: String,
     required: [true, 'userRentNameRequired'],
   },
-  date: {
+  rentdate: {
     type: Date,
     required: [true, 'userRentDateRequired'],
+  },
+  returndate: {
+    type: Date,
+    required: [true, 'userReturnDateRequired'],
   },
   location: {
     type: String,
@@ -86,19 +90,10 @@ const schema = new Schema(
   },
 )
 
-// schema.virtual(欄位名稱).get(資料產生方式)
-// 建立不存在的動態虛擬欄位
-// 資料產生方式 function 內的 this 代表一筆資料
-schema.virtual('cartQuantity').get(function () {
-  const user = this
-  return user.cart.reduce((total, current) => {
-    return total + current.quantity
-  }, 0)
-})
-
 // mongoose 驗證後，存入資料庫前執行動作
 schema.pre('save', function (next) {
   const user = this
+
   // 密碼欄位有修改再處理
   console.log('modified', user.isModified('password'))
   if (user.isModified('password')) {
@@ -115,6 +110,7 @@ schema.pre('save', function (next) {
       user.password = bcrypt.hashSync(user.password, 10)
     }
   }
+
   next()
 })
 

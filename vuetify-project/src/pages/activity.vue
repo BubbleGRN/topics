@@ -32,7 +32,7 @@
             <v-btn icon="mdi-pencil" variant="text" @click="openDialog(item)"></v-btn>
           </template>
           <template #[`item.join`]="{ item }">
-            <v-btn class="bg-primary-darken-1" variant="text" @click="openDialog-join(item)">加入</v-btn>
+            <v-btn class="bg-primary-darken-1" variant="text" @click="joinEvent(item)">加入</v-btn>
           </template>
         </v-data-table>
       </v-col>
@@ -298,4 +298,23 @@ const submit = handleSubmit(async (values) => {
     })
   }
 })
+
+const joinEvent = async (event) => {
+  try {
+    const payload = {
+      eventId: event._id,
+      userId: user.id
+    }
+    await apiAuth.post('/user/join-event', payload)
+    createSnackbar({
+      text: t('event.joinSuccess'),
+      snackbarProps: { color: 'green' }
+    })
+  } catch (error) {
+    createSnackbar({
+      text: t('api.' + (error?.response?.data?.message || 'unknownError')),
+      snackbarProps: { color: 'red' }
+    })
+  }
+}
 </script>

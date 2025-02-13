@@ -41,9 +41,16 @@
           ></v-text-field>
 
           <v-text-field
-            v-model="date.value.value"
-            :label="$t('event.date')"
-            :error-messages="date.errorMessage.value"
+            v-model="rentdate.value.value"
+            :label="$t('event.rentdate')"
+            :error-messages="rentdate.errorMessage.value"
+            type="date"
+          ></v-text-field>
+
+          <v-text-field
+            v-model="returndate.value.value"
+            :label="$t('event.returndate')"
+            :error-messages="returndate.errorMessage.value"
             type="date"
           ></v-text-field>
 
@@ -148,7 +155,8 @@ const submitCart = handleCartSubmit(async (values) => {
 
 const rentSchema = yup.object({
   name: yup.string().required(t('product.nameRequired')),
-  date: yup.date().required(t('product.dateRequired')),
+  rentdate: yup.date().required(t('product.rentDateRequired')),
+  returndate: yup.date().required(t('product.returnDateRequired')),
   location: yup.string().required(t('product.locationRequired')),
 })
 
@@ -156,13 +164,15 @@ const { handleSubmit: handleRentSubmit, isSubmitting: isRentting } = useForm({
   validationSchema: rentSchema,
   initialValues: {
     name: '',
-    date: '',
+    rentdate: '',
+    returndate: '',
     location: ''
   }
 })
 
 const name = useField('name')
-const date = useField('date')
+const rentdate = useField('rentdate')
+const returndate = useField('returndate')
 const location = useField('location')
 
 const submitRent = handleRentSubmit(async () => {
@@ -175,7 +185,8 @@ const submitRent = handleRentSubmit(async () => {
     const { data } = await apiAuth.patch('/user/rent', {
       product: product.value._id,
       name: name.value.value,
-      date: date.value.value,
+      rentdate: rentdate.value.value,
+      returndate: returndate.value.value,
       location: location.value.value,
     })
     user.rent = data.result
@@ -207,7 +218,8 @@ const openDialog = (product) => {
   if (product) {
     dialog.value.id = product._id
     name.value.value = product.name
-    date.value.value = ''
+    rentdate.value.value = ''
+    returndate.value.value = ''
     location.value.value = ''
   }
   dialog.value.open = true

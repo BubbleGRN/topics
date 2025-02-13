@@ -6,8 +6,7 @@
         v-for="n in 1"
         :key="n"
         class="pa-2"
-        style="margin-right: 170px;"
-        :style="{color:'white', backgroundColor:backgroundColor}"
+        style="margin-right: 50px; color: white; background-color: transparent;"
       >
       <template v-for="nav of navs" :key="nav.to">
         <v-btn v-if="nav.show" :to="nav.to" :prepend-icon="nav.icon">
@@ -20,7 +19,7 @@
         v-for="n in 1"
         :key="n"
         class="ma-10 pa-2"
-        :style="{color:'white', backgroundColor:backgroundColor}"
+        style="color: white; background-color: transparent;"
       >
       <v-btn v-if="user.isLoggedIn" prepend-icon="mdi-account-box" to='/account'>{{ $t('nav.account') }}</v-btn>
       <v-btn v-if="user.isLoggedIn" prepend-icon="mdi-account-arrow-right" @click="logout">{{ $t('nav.logout') }}</v-btn>
@@ -96,34 +95,6 @@ const navs = computed(() => {
   ]
 })
 
-const backgroundColor = computed(() => {
-  if (route.path === '/activity') {
-    return '#427542';
-  } else if (route.path === '/shop') {
-    return '#427542';
-  } else if (route.path === '/cart') {
-    return '#427542';
-  } else if (route.path === '/orders') {
-    return '#427542';
-  } else if (route.path === '/InsideShop/InsideShop_Gun') {
-    return '#427542';
-  } else if (route.path === '/InsideShop/InsideShop_Vest') {
-    return '#427542';
-  } else if (route.path === '/InsideShop/InsideShop_Backpack') {
-    return '#427542';
-  } else if (route.path === '/InsideShop/InsideShop_Helmet') {
-    return '#427542';
-  } else if (route.path === '/InsideShop/InsideShop_BB') {
-    return '#427542';
-  } else if (route.path === '/InsideShop/InsideShop_Other') {
-    return '#427542';
-  } else if (route.path === '/user/account') {
-    return '#427542';
-  } else {
-    return 'transparent';
-  }
-})
-
 const main = computed(() => {
   if (route.path === '/') {
     return '-60px';
@@ -180,7 +151,7 @@ const logout = async () => {
 <style scoped>
 .transparent-app-bar {
   background-color: transparent !important;
-  background-image: linear-gradient(to bottom, rgba(13, 46, 10, 0.8) 60%, transparent);
+  background: linear-gradient(to bottom, #D1C18B, #2D4B2A, #7A9A5E, transparent);
   box-shadow: none !important;
   transition: background-color 0.3s ease, height 0.3s ease;
 }

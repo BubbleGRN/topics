@@ -47,6 +47,7 @@ export const login = async (req, res) => {
         account: req.user.account,
         role: req.user.role,
         cart: req.user.cartQuantity,
+        rent: req.user.rent,
       },
     })
   } catch (error) {
@@ -66,6 +67,7 @@ export const profile = async (req, res) => {
       account: req.user.account,
       role: req.user.role,
       cart: req.user.cartQuantity,
+      rent: req.user.rent,
     },
   })
 }
@@ -213,29 +215,27 @@ export const updateRent = async (req, res) => {
     // 檢查購物車內有沒有商品
     const idx = req.user.rent.findIndex((item) => item.product.toString() === req.body.product)
     if (idx > -1) {
-      // 有商品，修改數量
+      // 商品已存在，更新數量
       const updatedQuantity = req.user.rent[idx].quantity + parseInt(req.body.quantity)
       if (updatedQuantity > 0) {
-        // 修改後大於 0，修改數量
-        req.user.rent[idx].quantity = updatedQuantity
         req.user.rent[idx].name = req.body.name
-        req.user.rent[idx].date = req.body.date
+        req.user.rent[idx].rentdate = req.body.rentdate
+        req.user.rent[idx].returndate = req.body.returndate
         req.user.rent[idx].location = req.body.location
       } else {
-        // 修改後小於等於 0，刪除商品
+        // 如果數量小於或等於 0，則刪除該商品
         req.user.rent.splice(idx, 1)
       }
     } else {
-      // 沒有商品，檢查商品是否存在
+      // 沒有相同商品，則新增
       const product = await Product.findById(req.body.product).orFail(new Error('NOT FOUND'))
-      // 商品沒有上架，錯誤
       if (!product.sell) throw new Error('SELL')
 
       req.user.rent.push({
         product: req.body.product,
-        quantity: req.body.quantity,
         name: req.body.name,
-        date: req.body.date,
+        rentdate: req.body.rentdate,
+        returndate: req.body.returndate,
         location: req.body.location,
       })
     }
