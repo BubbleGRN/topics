@@ -6,7 +6,7 @@
         v-for="n in 1"
         :key="n"
         class="pa-2"
-        style="margin-right: 50px; color: white; background-color: transparent;"
+        style="margin-right: 50px; background-color: transparent; color: white;"
       >
       <template v-for="nav of navs" :key="nav.to">
         <v-btn v-if="nav.show" :to="nav.to" :prepend-icon="nav.icon">
@@ -19,7 +19,7 @@
         v-for="n in 1"
         :key="n"
         class="ma-10 pa-2"
-        style="color: white; background-color: transparent;"
+        style="background-color: transparent; color: white;"
       >
       <v-btn v-if="user.isLoggedIn" prepend-icon="mdi-account-box" to='/account'>{{ $t('nav.account') }}</v-btn>
       <v-btn v-if="user.isLoggedIn" prepend-icon="mdi-account-arrow-right" @click="logout">{{ $t('nav.logout') }}</v-btn>
@@ -151,7 +151,7 @@ const logout = async () => {
 <style scoped>
 .transparent-app-bar {
   background-color: transparent !important;
-  background: linear-gradient(to bottom, #D1C18B, #2D4B2A, #7A9A5E, transparent);
+  background: linear-gradient(to bottom, #2D4B2A 10%, transparent);
   box-shadow: none !important;
   transition: background-color 0.3s ease, height 0.3s ease;
 }
@@ -171,6 +171,7 @@ const logout = async () => {
   display: flex;
   justify-content: center;
   transition: height 0.3s ease;
+  height: 80px;
 }
 
 #main {
@@ -178,9 +179,26 @@ const logout = async () => {
   top: -60px;
 }
 
+.v-btn:hover {
+  background-color: rgba(0, 225, 0, 0.2);
+}
+
 .v-btn-align {
   display: flex;
   align-items: center;
   transition: height 0.3s ease;
+}
+
+.v-app-bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 112vh;
+  background: url('../../img/jungle-navbar.png') no-repeat center center;
+  background-size: cover;
+  z-index: -1;
 }
 </style>

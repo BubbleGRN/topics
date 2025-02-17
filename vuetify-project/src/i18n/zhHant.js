@@ -1,4 +1,5 @@
 import { zhHant } from 'vuetify/locale'
+import { date } from 'yup'
 
 export default {
   $vuetify: zhHant,
@@ -88,6 +89,12 @@ export default {
     addRent: '租借物品',
     rentSubmit: '租借資料送出',
     addRentSuccess: '租借成功',
+    nameRequired: "名稱為必填項目",
+    rentDateRequired: "請選擇租借日期",
+    rentDateInvalid: "請輸入有效的日期",
+    returnDateRequired: "請選擇歸還日期",
+    returnDateInvalid: "請輸入有效的日期",
+    locationRequired: '請填寫欲租借的地址',
   },
   event: {
     image: '圖片',
@@ -97,7 +104,9 @@ export default {
     location: '活動位置',
     description: '活動介紹',
     price: '費用',
-    status: '選擇遊戲'
+    status: '選擇遊戲',
+    date: '日期',
+    join: '加入活動',
   },
   productCategory: {
     gun: '氣槍',

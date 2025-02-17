@@ -11,10 +11,10 @@
       v-for="(item, i) in items"
       :key="i"
       :src="item.src"
-      reverse-transition="fade-transition"
-      transition="fade-transition"
+      reverse-transition="scale-transition"
+      transition="scale-transition"
     >
-    <v-text class="my-animation" style="font-size: 5rem; position: relative; top: -30px;">
+    <v-text class="my-animation" style="font-size: 5rem; position: relative; top: -30px;left: 20px;">
       {{ item.text }}
     </v-text>
     </v-carousel-item>
@@ -614,7 +614,7 @@ meta:
   margin: 25rem;
   margin-left: 2rem;
   color: white;
-  animation: lightSpeedInRight;
+  animation: fadein;
   animation-duration: 2s;
 }
 
@@ -622,8 +622,6 @@ meta:
   width: 100%;
   height: 100%;
   object-fit: cover;
-  animation: zoomOut;
-  animation-duration: 1s;
 }
 
 #main-content {

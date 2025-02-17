@@ -155,8 +155,8 @@ const submitCart = handleCartSubmit(async (values) => {
 
 const rentSchema = yup.object({
   name: yup.string().required(t('product.nameRequired')),
-  rentdate: yup.date().required(t('product.rentDateRequired')),
-  returndate: yup.date().required(t('product.returnDateRequired')),
+  rentdate: yup.date().required(t('product.rentDateRequired')).typeError(t('product.rentDateInvalid')),
+  returndate: yup.date().required(t('product.returnDateRequired')).typeError(t('product.returnDateInvalid')),
   location: yup.string().required(t('product.locationRequired')),
 })
 
@@ -199,7 +199,7 @@ const submitRent = handleRentSubmit(async () => {
     })
     closeDialog()
   } catch (error) {
-    console.log(error)
+    console.log('1111',error)
     createSnackbar({
       text: t('api.' + (error?.response?.data?.message || 'unknownError')),
       snackbarProps: {
