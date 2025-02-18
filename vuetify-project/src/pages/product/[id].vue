@@ -190,6 +190,7 @@ const submitRent = handleRentSubmit(async () => {
       location: location.value.value,
     })
     user.rent = data.result
+    console.log(typeof user.rent, user.rent)
 
     createSnackbar({
       text: t('product.addRentSuccess'),

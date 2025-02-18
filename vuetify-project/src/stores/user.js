@@ -8,6 +8,7 @@ export const useUserStore = defineStore('user', () => {
   const account = ref('')
   const role = ref(UserRole.USER)
   const cart = ref(0)
+  const rent = ref([])
 
   const isLoggedIn = computed(() => {
     return token.value.length > 0
@@ -40,7 +41,7 @@ export const useUserStore = defineStore('user', () => {
   return {
     token, account, role, cart,
     isLoggedIn, isAdmin, avatar,
-    login, logout
+    login, logout, rent
   }
 }, {
   persist: {

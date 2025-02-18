@@ -1,12 +1,12 @@
 <template>
-  <v-container>
+  <v-container class="backgroundIMG" style="margin-left: 0px; margin-right: 0px; max-width: 1903px;">
     <v-row style="position: relative; top: 80px;">
       <v-col cols="12">
         <h1 class="text-center">{{ $t('nav.orders') }}</h1>
       </v-col>
       <v-divider></v-divider>
       <v-col cols="12">
-        <v-data-table :items="orders" :headers="headers">
+        <v-data-table :items="orders" :headers="headers" style="border: 5px solid #7A9A5E;">
           <template #[`item.cart`]="data">
             <ul>
               <li v-for="item in data.item.cart" :key="item._id">
@@ -69,3 +69,12 @@ meta:
   login: true
   title: 'nav.orders'
 </route>
+
+<style>
+.backgroundIMG {
+  background: url(../../img/jungle-navbar.png) no-repeat center top;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+}
+</style>

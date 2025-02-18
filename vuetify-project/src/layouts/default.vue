@@ -23,6 +23,7 @@
       >
       <v-btn v-if="user.isLoggedIn" prepend-icon="mdi-account-box" to='/account'>{{ $t('nav.account') }}</v-btn>
       <v-btn v-if="user.isLoggedIn" prepend-icon="mdi-account-arrow-right" @click="logout">{{ $t('nav.logout') }}</v-btn>
+      <v-btn prepend-icon="mdi-theme-light-dark" @click="toggleTheme"></v-btn>
       <v-menu>
         <v-list>
           <v-list-item
@@ -42,6 +43,7 @@
 </template>
 
 <script setup>
+import { useTheme } from 'vuetify'
 import { computed, ref, onMounted, onBeforeUnmount } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useUserStore } from '@/stores/user'
@@ -55,6 +57,7 @@ const { apiAuth } = useAxios()
 const createSnackbar = useSnackbar()
 const router = useRouter()
 const route = useRoute()
+const theme = useTheme()
 
 const appBarHeight = ref(80)
 const hasHeightIncreased = ref(false)
@@ -146,6 +149,10 @@ const logout = async () => {
   })
   router.push('/')
 }
+
+function toggleTheme () {
+  theme.global.name.value = theme.global.current.value.dark ? 'myCustomLightTheme' : 'myCustomDarkTheme'
+}
 </script>
 
 <style scoped>
@@ -187,18 +194,5 @@ const logout = async () => {
   display: flex;
   align-items: center;
   transition: height 0.3s ease;
-}
-
-.v-app-bar::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  height: 112vh;
-  background: url('../../img/jungle-navbar.png') no-repeat center center;
-  background-size: cover;
-  z-index: -1;
 }
 </style>

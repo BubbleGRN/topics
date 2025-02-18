@@ -1,13 +1,12 @@
 <template>
-  <v-container>
+  <v-container class="backgroundIMG" style="margin-left: 0px; margin-right: 0px; max-width: 1903px;">
     <v-row style="position: relative; top: 80px;">
       <v-col cols="12">
         <h1 class="text-center">{{ $t('nav.adminEvents') }}</h1>
       </v-col>
       <v-divider></v-divider>
       <v-col cols="12">
-        <!-- 活動資料表格 -->
-        <v-data-table :items="events" :headers="headers" :search="search" items-per-page="5">
+        <v-data-table :items="events" :headers="headers" :search="search" items-per-page="5" style="border: 5px solid #D1C18B;">
           <template #top>
             <v-toolbar>
               <v-btn @click="openDialog(null)">{{ $t('adminEvent.new') }}</v-btn>
@@ -15,7 +14,6 @@
               <v-text-field v-model="search" prepend-inner-icon="mdi-magnify" variant="underlined"></v-text-field>
             </v-toolbar>
           </template>
-          <!-- 資料顯示 -->
           <template #[`item.name`]="{ value }">
             {{ value }}
           </template>
@@ -318,3 +316,12 @@ const joinEvent = async (event) => {
   }
 }
 </script>
+
+<style>
+.backgroundIMG {
+  background: url(../../img/jungle-navbar.png) no-repeat center top;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+}
+</style>

@@ -41,9 +41,9 @@ watch(
   () => route.path,
   (newPath) => {
     if (newPath === '/account/joinedActivity' || newPath === '/account/rent') {
-      backgroundStyle.value.backgroundColor = 'rgba(0, 0, 0, 0.5)'; // Make background semi-transparent
+      backgroundStyle.value.backgroundColor = 'rgba(0, 0, 0, 0.5)';
     } else {
-      backgroundStyle.value.backgroundColor = 'transparent'; // Default background
+      backgroundStyle.value.backgroundColor = 'transparent';
     }
   },
   { immediate: true }

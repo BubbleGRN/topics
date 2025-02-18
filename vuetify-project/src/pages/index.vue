@@ -27,7 +27,7 @@
       </v-row>
       <v-row>
         <v-col cols="12" class="d-flex justify-center">
-        <v-text style="font-size: 2rem;">詳細資訊</v-text>
+        <v-text style="font-size: 35px;">詳細資訊 Details</v-text>
         </v-col>
       </v-row>
     <v-row>
@@ -534,6 +534,36 @@
       </v-row>
     </v-container>
     </div>
+    <v-img src="../../img/sniper.jpg" cover style="width: 100vw; height: 100vh; position: absolute; top: 2700px;"></v-img>
+    <div id="main-content" style="margin-top: 750px;">
+      <v-text style="text-align: center; font-size: 35px; position: absolute; top: 220px; width: 100vw;">關於我們 About Us</v-text>
+      <v-card style="width: 90vw; height: 1300px; position: absolute; top: 300px; right: 90px; background-color: transparent; border: none; box-shadow: none;">
+        <v-card-text>
+          <v-row>
+            <v-col cols="6"><v-img src="../../img/soldier2.jpg"></v-img> <v-subtitle style="color: red;">圖片僅供參考</v-subtitle></v-col>
+            <v-col cols="6">
+              <h2>Survivor's Quest 是一款結合生存冒險和策略劇情的遊戲，為玩家提供既具挑戰性又充滿故事性的體驗。在這裡，你不僅僅要面對自然的極限考驗，還要解開一個個謎題、識破隱藏在隊友中的敵人，並在充滿陰謀和驚險的環境中生存下來。</h2><br><br>
+
+              <h2>我們的故事</h2><br>
+              在 Survivor's Quest 中，你將被置身於一個神秘的荒野，這裡充滿了危險和謎題。你必須利用各種生存技能來建造庇護所、尋找食物，並與其他玩家合作或對抗。然而，這場生存遊戲不僅僅是物理上的挑戰——每一個玩家都有自己的秘密，每個選擇背後都有深刻的故事和陰謀。像《狼人殺》一樣，你可能發現自己與身邊的隊友並不完全是一條船上的人，而是背後藏有各自的目的和動機。<br><br>
+
+              <h2>我們的玩法</h2><br>
+              在這款遊戲中，你將面臨兩個主要挑戰：<br><br>
+
+              1. 生存挑戰：玩家需要在充滿資源限制和險惡環境的世界中生存下來。建造庇護所、尋找食物和水源、抵禦野生動物的襲擊——這些基本的生存技能將是你成功的關鍵。<br><br>
+              2. 策略與劇情：隨著遊戲進程的推進，玩家會被捲入一場錯綜複雜的陰謀與謎題當中。誰是隊中的間諜？誰在隱藏自己的真實身份？每一個選擇都可能改變你的命運。類似《狼人殺》的機制，讓每個玩家都處於緊張的心理博弈中，你是否能揭露真相，還是成為別人的犧牲品？<br><br>
+              <h2>我們的願景</h2><br>
+              我們希望 Survivor's Quest 不僅是一款生存遊戲，更是一個充滿互動與策略的劇情冒險平台。在這裡，玩家的選擇會影響故事的走向，每一場遊戲都是一次全新的冒險和挑戰。我們的目標是創造一個讓玩家不斷思考、探索和反轉局勢的環境，讓每一個遊戲體驗都充滿未知與驚喜。<br><br>
+
+              在未來，我們將持續更新遊戲內容，引入更多的角色故事、隱藏任務和全新的生存模式，為玩家帶來更加豐富和深刻的遊戲體驗。<br><br>
+
+              加入我們
+              Survivor's Quest 是為那些喜愛挑戰自己、探索複雜人性和解開神秘故事的玩家準備的遊戲。無論是策略、合作還是心理博弈，這裡都有你尋找的冒險。快來參與我們的世界，揭開這場生存與陰謀交織的旅程吧！<br><br>
+            </v-col>
+          </v-row>
+        </v-card-text>
+      </v-card>
+    </div>
 </template>
 
 <script>
@@ -630,6 +660,7 @@ meta:
   height: 1900px;
   position: relative;
   top:-200px;
+  z-index: 50;
 }
 
 #ava .v-img__img{

@@ -239,6 +239,7 @@ export const updateRent = async (req, res) => {
         location: req.body.location,
       })
     }
+    console.log('111', req.user.rent)
 
     await req.user.save()
     res.status(StatusCodes.OK).json({

@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="backgroundIMG" style="margin-left: 0px; margin-right: 0px; max-width: 1903px;">
     <v-row style="position: relative; top: 80px;">
       <v-col cols="12">
         <h1 class="text-center">{{ $t('nav.cart') }}</h1>
@@ -117,3 +117,12 @@ const checkout = async () => {
   }
 }
 </script>
+
+<style>
+.backgroundIMG {
+  background: url(../../img/jungle-navbar.png) no-repeat center top;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+}
+</style>

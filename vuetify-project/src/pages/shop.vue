@@ -1,6 +1,7 @@
 <template>
+  <div class="backgroundIMG">
   <v-container class="position">
-    <v-row class="pt-10">
+    <v-row style="padding-top: 100px;">
       <v-col>
       <v-btn to="/InsideShop/InsideShop_Gun" style="background: url(../../img/mixcolor.jpg); background-size: cover; width: 570px; height: 350px;">
         <v-card height="300" width="520">
@@ -83,6 +84,7 @@
     </v-col>
     </v-row>
   </v-container>
+</div>
 </template>
 
 <route lang="yaml">
@@ -95,6 +97,13 @@ meta:
 <style>
 .position {
   position: relative;
-  top: 65px;
+  top:10px
+}
+
+.backgroundIMG {
+  background: url(../../img/jungle-navbar.png) no-repeat center top;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
 }
 </style>
