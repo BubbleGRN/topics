@@ -11,6 +11,9 @@
         <v-pagination v-model="currentPage" :length="totalPage"></v-pagination>
       </v-col>
     </v-row>
+    <v-row>
+      <v-col class="text-right"><v-btn to="/shop" prepend-icon="mdi-keyboard-backspace">返回上一頁</v-btn></v-col>
+    </v-row>
   </v-container>
 </template>
 

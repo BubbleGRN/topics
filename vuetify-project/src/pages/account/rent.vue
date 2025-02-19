@@ -65,3 +65,11 @@ if (daysRemaining <= 2 && daysRemaining >= 0) {
   color: red;
 }
 </style>
+
+<route lang="yaml">
+  meta:
+    layout: account
+    login: true
+    admin: false
+    title: 'nav.accountrent'
+  </route>

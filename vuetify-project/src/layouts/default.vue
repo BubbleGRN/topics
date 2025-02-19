@@ -37,7 +37,7 @@
     </v-sheet>
     </v-container>
   </v-app-bar>
-  <v-main style="position: relative;" :style="{ top: main }">
+  <v-main style="position: relative; --v-layout-top:0px" :style="{ top: main }">
     <router-view></router-view>
   </v-main>
 </template>
@@ -100,31 +100,29 @@ const navs = computed(() => {
 
 const main = computed(() => {
   if (route.path === '/') {
-    return '-60px';
+    return '10px';
   } else if (route.path === '/shop') {
-    return '-60px';
-  } else if (route.path === '/cart') {
-    return '-60px';
-  } else if (route.path === '/orders') {
-    return '-60px';
-  } else if (route.path === '/InsideShop/InsideShop_Gun') {
-    return '-60px';
-  } else if (route.path === '/InsideShop/InsideShop_Vest') {
-    return '-60px';
-  } else if (route.path === '/InsideShop/InsideShop_Backpack') {
-    return '-60px';
-  } else if (route.path === '/InsideShop/InsideShop_Helmet') {
-    return '-60px';
-  } else if (route.path === '/InsideShop/InsideShop_BB') {
-    return '-60px';
-  } else if (route.path === '/InsideShop/InsideShop_Other') {
-    return '-60px';
-  } else if (route.path === '/user/account') {
-    return '-60px';
-  } else if (route.path === '/activity') {
-    return '-60px';
-  } else {
     return '0px';
+  } else if (route.path === '/cart') {
+    return '0px';
+  } else if (route.path === '/orders') {
+    return '0px';
+  } else if (route.path === '/InsideShop/InsideShop_Gun') {
+    return '30px';
+  } else if (route.path === '/InsideShop/InsideShop_Vest') {
+    return '30px';
+  } else if (route.path === '/InsideShop/InsideShop_Backpack') {
+    return '30px';
+  } else if (route.path === '/InsideShop/InsideShop_Helmet') {
+    return '30px';
+  } else if (route.path === '/InsideShop/InsideShop_BB') {
+    return '30px';
+  } else if (route.path === '/InsideShop/InsideShop_Other') {
+    return '30px';
+  } else if (route.path === '/activity') {
+    return '0px';
+  } else {
+    return '80px';
   }
 })
 

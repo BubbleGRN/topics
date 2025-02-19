@@ -1,6 +1,6 @@
 <template>
   <div class="backgroundIMG">
-  <v-container class="position">
+  <v-container>
     <v-row style="padding-top: 100px;">
       <v-col>
       <v-btn to="/InsideShop/InsideShop_Gun" style="background: url(../../img/mixcolor.jpg); background-size: cover; width: 570px; height: 350px;">
@@ -95,11 +95,6 @@ meta:
 </route>
 
 <style>
-.position {
-  position: relative;
-  top:10px
-}
-
 .backgroundIMG {
   background: url(../../img/jungle-navbar.png) no-repeat center top;
   width: 100vw;

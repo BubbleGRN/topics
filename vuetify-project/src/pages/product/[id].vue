@@ -1,8 +1,11 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="12">
-        <h1 class="text-center">{{ product.name }}</h1>
+      <v-col cols="11" class="d-flex justify-center" style="padding-left: 130px;">
+        <h1>{{ product.name }}</h1>
+      </v-col>
+      <v-col cols="1" class="text-right">
+        <v-btn prepend-icon="mdi-keyboard-backspace" @click="$router.go(-1)">返回上一頁</v-btn>
       </v-col>
       <v-divider></v-divider>
       <v-col cols="12" md="6">
@@ -12,14 +15,45 @@
         <p>{{ $t( 'productCategory.'+ product.category) }}</p>
         <p>{{ product.price }}</p>
         <p>{{ product.description }}</p>
-        <v-form :disabled="isCartSubmitting" @submit.prevent="submitCart">
-          <v-text-field v-model.number="quantity.value.value" type="number" :error-messages="quantity.errorMessage.value"></v-text-field>
-          <v-btn type="submit" prepend-icon="mdi-cart" :loading="isSubmitting">{{ $t('product.addCart') }}</v-btn>
-          <v-text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</v-text>
-        </v-form>
-        <v-form :disabled="isRentSubmitting" @submit.prevent="submitRent">
-          <v-btn type="submit" prepend-icon="mdi-send" :loading="isRentting" @click="openDialog(product)">{{ $t('product.addRent') }}</v-btn>
-        </v-form>
+        <v-row align="center">
+        <v-col cols="auto" class="pt-8">
+          <v-form :disabled="isCartSubmitting" @submit.prevent="submitCart">
+            <v-text-field
+              v-model.number="quantity.value.value"
+              type="number"
+              :error-messages="quantity.errorMessage.value"
+              label="數量"
+            ></v-text-field>
+          </v-form>
+        </v-col>
+
+        <v-col cols="auto">
+          <v-form :disabled="isCartSubmitting" @submit.prevent="submitCart">
+            <v-btn
+              type="submit"
+              prepend-icon="mdi-cart"
+              :loading="isSubmitting"
+            >
+              {{ $t('product.addCart') }}
+            </v-btn>
+          </v-form>
+        </v-col>
+      </v-row>
+
+      <v-row align="center">
+        <v-col cols="auto">
+          <v-form :disabled="isRentSubmitting" @submit.prevent="submitRent">
+            <v-btn
+              type="submit"
+              prepend-icon="mdi-send"
+              :loading="isRentting"
+              @click="openDialog(product)"
+            >
+              {{ $t('product.addRent') }}
+            </v-btn>
+          </v-form>
+        </v-col>
+      </v-row>
       </v-col>
     </v-row>
   </v-container>

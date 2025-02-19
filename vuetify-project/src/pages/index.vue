@@ -27,7 +27,7 @@
       </v-row>
       <v-row>
         <v-col cols="12" class="d-flex justify-center">
-        <v-text style="font-size: 35px;">詳細資訊 Details</v-text>
+        <v-text style="font-size: 35px; color: #2D4B2A;">詳細資訊 Details</v-text>
         </v-col>
       </v-row>
     <v-row>
@@ -536,7 +536,7 @@
     </div>
     <v-img src="../../img/sniper.jpg" cover style="width: 100vw; height: 100vh; position: absolute; top: 2700px;"></v-img>
     <div id="main-content" style="margin-top: 750px;">
-      <v-text style="text-align: center; font-size: 35px; position: absolute; top: 220px; width: 100vw;">關於我們 About Us</v-text>
+      <v-text class="my-custom-font" style="text-align: center; font-size: 35px; position: absolute; top: 220px; width: 100vw; color: #2D4B2A;">關於我們 About Us</v-text>
       <v-card style="width: 90vw; height: 1300px; position: absolute; top: 300px; right: 90px; background-color: transparent; border: none; box-shadow: none;">
         <v-card-text>
           <v-row>
@@ -665,5 +665,9 @@ meta:
 
 #ava .v-img__img{
   filter:brightness(70%);
+}
+
+.my-custom-font {
+  font-family: "Kaisei Decol", serif;
 }
 </style>
