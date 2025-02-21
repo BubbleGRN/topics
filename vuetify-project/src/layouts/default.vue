@@ -1,7 +1,7 @@
 <template>
   <v-app-bar :class="appBarClass" app :style="{ height: appBarHeight + 'px' }">
     <v-container class="d-flex align-center justify-space-between" style="margin-left: 0px; margin-right: 0px; max-width: 1910px;">
-      <v-btn to="/" :active="false" :style="{ backgroundColor: backgroundColor }" style="height: 50px; font-size: 2rem; color: #D1C18B;">Survivor‘s Quest</v-btn>
+      <v-btn to="/" :active="false" class="custom-text" :style="{ backgroundColor: backgroundColor }" style="height: 50px; font-size: 1.3rem; color: #D1C18B;">Survivor‘s Quest</v-btn>
       <v-sheet
         v-for="n in 1"
         :key="n"
@@ -192,5 +192,11 @@ function toggleTheme () {
   display: flex;
   align-items: center;
   transition: height 0.3s ease;
+}
+
+.custom-text {
+  font-family: "Rock Salt", serif;
+  font-weight: 400;
+  font-size: 40px;
 }
 </style>

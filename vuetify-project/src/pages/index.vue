@@ -14,7 +14,7 @@
       reverse-transition="scale-transition"
       transition="scale-transition"
     >
-    <v-text class="my-animation" style="font-size: 5rem; position: relative; top: -30px;left: 20px;">
+    <v-text class="my-animation custom-text" style="font-size: 5rem; position: relative; top: -30px;left: 20px;">
       {{ item.text }}
     </v-text>
     </v-carousel-item>
@@ -27,7 +27,7 @@
       </v-row>
       <v-row>
         <v-col cols="12" class="d-flex justify-center">
-        <v-text style="font-size: 35px; color: #2D4B2A;">詳細資訊 Details</v-text>
+        <v-text class="custom-text" style="color: #2D4B2A;">詳細資訊 Details</v-text>
         </v-col>
       </v-row>
     <v-row>
@@ -45,13 +45,13 @@
           flat
           style="border: 1px solid #2D4B2A;"
         >
-          <v-tab text="氣槍" value="option-1" class="tab-item" style="font-size: 20px;"></v-tab>
-          <v-tab text="護具" value="option-2" class="tab-item" style="font-size: 20px;"></v-tab>
-          <v-tab text="背包" value="option-3" class="tab-item" style="font-size: 20px;"></v-tab>
-          <v-tab text="頭盔" value="option-4" class="tab-item" style="font-size: 20px;"></v-tab>
-          <v-tab text="子彈" value="option-5" class="tab-item" style="font-size: 20px;"></v-tab>
-          <v-tab text="其他" value="option-6" class="tab-item" style="font-size: 20px;"></v-tab>
-          <v-tab text="租借" value="option-7" class="tab-item" style="font-size: 20px;"></v-tab>
+          <v-tab text="氣槍" value="option-1" class="tab-item custom-text" style="font-size: 20px;"></v-tab>
+          <v-tab text="護具" value="option-2" class="tab-item custom-text" style="font-size: 20px;"></v-tab>
+          <v-tab text="背包" value="option-3" class="tab-item custom-text" style="font-size: 20px;"></v-tab>
+          <v-tab text="頭盔" value="option-4" class="tab-item custom-text" style="font-size: 20px;"></v-tab>
+          <v-tab text="子彈" value="option-5" class="tab-item custom-text" style="font-size: 20px;"></v-tab>
+          <v-tab text="其他" value="option-6" class="tab-item custom-text" style="font-size: 20px;"></v-tab>
+          <v-tab text="租借" value="option-7" class="tab-item custom-text" style="font-size: 20px;"></v-tab>
         </v-tabs>
       </div>
       </v-toolbar>
@@ -534,15 +534,15 @@
       </v-row>
     </v-container>
     </div>
-    <v-img src="../../img/sniper.jpg" cover style="width: 100vw; height: 100vh; position: absolute; top: 2700px;"></v-img>
+    <v-img src="../../img/sniper.jpg" cover style="width: 100vw; height: 100vh; position: absolute; top: 2650px;"></v-img>
     <div id="main-content" style="margin-top: 750px;">
-      <v-text class="my-custom-font" style="text-align: center; font-size: 35px; position: absolute; top: 220px; width: 100vw; color: #2D4B2A;">關於我們 About Us</v-text>
+      <v-text class="custom-text" style="text-align: center; position: absolute; top: 220px; width: 100vw; color: #2D4B2A;">關於我們 About Us</v-text>
       <v-card style="width: 90vw; height: 1300px; position: absolute; top: 300px; right: 90px; background-color: transparent; border: none; box-shadow: none;">
         <v-card-text>
           <v-row>
             <v-col cols="6"><v-img src="../../img/soldier2.jpg"></v-img> <v-subtitle style="color: red;">圖片僅供參考</v-subtitle></v-col>
             <v-col cols="6">
-              <h2>Survivor's Quest 是一款結合生存冒險和策略劇情的遊戲，為玩家提供既具挑戰性又充滿故事性的體驗。在這裡，你不僅僅要面對自然的極限考驗，還要解開一個個謎題、識破隱藏在隊友中的敵人，並在充滿陰謀和驚險的環境中生存下來。</h2><br><br>
+              <h2 style="font-size: 20px;">Survivor's Quest 是一款結合生存冒險和策略劇情的遊戲，為玩家提供既具挑戰性又充滿故事性的體驗。在這裡，你不僅僅要面對自然的極限考驗，還要解開一個個謎題、識破隱藏在隊友中的敵人，並在充滿陰謀和驚險的環境中生存下來。</h2><br><br>
 
               <h2>我們的故事</h2><br>
               在 Survivor's Quest 中，你將被置身於一個神秘的荒野，這裡充滿了危險和謎題。你必須利用各種生存技能來建造庇護所、尋找食物，並與其他玩家合作或對抗。然而，這場生存遊戲不僅僅是物理上的挑戰——每一個玩家都有自己的秘密，每個選擇背後都有深刻的故事和陰謀。像《狼人殺》一樣，你可能發現自己與身邊的隊友並不完全是一條船上的人，而是背後藏有各自的目的和動機。<br><br>
@@ -667,7 +667,15 @@ meta:
   filter:brightness(70%);
 }
 
-.my-custom-font {
-  font-family: "Kaisei Decol", serif;
+.custom-text {
+  font-family: "Rock Salt", serif;
+  font-weight: 400;
+  font-size: 40px;
+}
+
+body {
+  font-family: "Noto Serif TC", serif;
+  font-weight: 600;
+  font-optical-sizing: auto;
 }
 </style>

@@ -32,8 +32,12 @@ export default defineConfig({
       google: {
         families: [
           {
-            name: 'Roboto',
-            styles: 'wght@100;300;400;500;700;900',
+            name: 'Noto Serif TC',
+            styles: 'wght@200;300;400;500;700;900',
+          },
+          {
+            name: 'Rock Salt',
+            styles: 'wght@400',
           },
         ],
       },
