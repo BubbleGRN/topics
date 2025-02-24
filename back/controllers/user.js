@@ -39,6 +39,7 @@ export const login = async (req, res) => {
     const token = jwt.sign({ _id: req.user._id }, process.env.JWT_SECRET, { expiresIn: '7 days' })
     req.user.tokens.push(token)
     await req.user.save()
+    console.log('159', req.user)
     res.status(StatusCodes.OK).json({
       success: true,
       message: '',
@@ -46,7 +47,7 @@ export const login = async (req, res) => {
         token,
         account: req.user.account,
         role: req.user.role,
-        cart: req.user.cartQuantity,
+        cart: req.user.cart,
         rent: req.user.rent,
       },
     })
@@ -118,6 +119,7 @@ export const getCart = async (req, res) => {
       message: '',
       result: result.cart,
     })
+    console.log('789', result.cart[0].quantity)
   } catch (error) {
     console.log(error)
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({

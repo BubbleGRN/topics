@@ -169,7 +169,10 @@ const submitCart = handleCartSubmit(async (values) => {
       product: product.value._id,
       quantity: values.quantity
     })
+
+    console.log('444444444444444',data)
     user.cart = data.result
+    console.log('456',data.result)
     createSnackbar({
       text: t('product.addCartSuccess'),
       snackbarProps: {

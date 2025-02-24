@@ -1,13 +1,14 @@
 // Utilities
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
+
 import UserRole from '@/enums/UserRole'
 
 export const useUserStore = defineStore('user', () => {
   const token = ref('')
   const account = ref('')
   const role = ref(UserRole.USER)
-  const cart = ref(0)
+  const cart = ref([])
   const rent = ref([])
 
   const isLoggedIn = computed(() => {
@@ -26,16 +27,21 @@ export const useUserStore = defineStore('user', () => {
     if (data.token) {
       token.value = data.token
     }
+    console.log('2222222222222222', data)
     account.value = data.account
     role.value = data.role
-    cart.value = data.cart
+    cart.value = data.cart || []
+    console.log('3333333333333333', cart.value)
   }
+
+
+console.log(cart.value)
 
   const logout = () => {
     token.value = ''
     account.value = ''
     role.value = UserRole.USER
-    cart.value = 0
+    cart.value = []
   }
 
   return {
@@ -46,6 +52,6 @@ export const useUserStore = defineStore('user', () => {
 }, {
   persist: {
     key: 'shop-user',
-    pick: ['token']
+    pick: ['token', 'cart']
   }
 })

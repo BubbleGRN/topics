@@ -11,7 +11,7 @@
       <template v-for="nav of navs" :key="nav.to">
         <v-btn v-if="nav.show" :to="nav.to" :prepend-icon="nav.icon">
           {{ nav.text }}
-          <v-badge v-if="nav.to === '/cart'" :content="user.cart" floating color="red"></v-badge>
+          <v-badge v-if="nav.to === '/cart'" :content="totalQuantity" floating color="red"></v-badge>
         </v-btn>
       </template>
     </v-sheet>
@@ -63,6 +63,9 @@ const appBarHeight = ref(80)
 const hasHeightIncreased = ref(false)
 const appBarClass = ref('transparent-app-bar')
 
+const totalQuantity = computed(() => {
+  return user.cart.reduce((acc, item) => acc + item.quantity, 0)
+})
 
 const checkScrollPosition = () => {
   if (window.scrollY > 100 && !hasHeightIncreased.value) {
