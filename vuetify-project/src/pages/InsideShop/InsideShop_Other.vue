@@ -4,8 +4,13 @@
       <v-col cols="12">
         <v-text-field v-model="search" prepend-inner-icon="mdi-magnify"></v-text-field>
       </v-col>
+      <v-container v-if="filteredProducts.length === 0" class="text-center">
+        <v-alert type="info" color="grey lighten-4" class="ma-4">
+          無資料，可至商城購買物品
+        </v-alert>
+      </v-container>
       <v-col v-for="product of filteredProducts" :key="product._id" cols="12" md="6" lg="3" >
-        <product-card v-bind="product"></product-card>
+        <product-card v-bind="product" style="height: 560px"></product-card>
       </v-col>
       <v-col cols="12">
         <v-pagination v-model="currentPage" :length="totalPage"></v-pagination>
@@ -24,12 +29,18 @@ import ProductCard from '@/components/ProductCard.vue'
 
 const { api } = useAxios()
 
-const ITEMS_PER_PAGE = 2
+const ITEMS_PER_PAGE = 4
 const currentPage = ref(1)
-const totalPage = computed(() => Math.ceil(filteredProducts.value.length / ITEMS_PER_PAGE))
+const totalPage = computed(() => Math.ceil(filteredtotalProduct.value.length / ITEMS_PER_PAGE))
 
 const products = ref([])
 const search = ref('')
+
+const filteredtotalProduct = computed(() => {
+  return products.value
+    .filter ( product => product.category === 'gun' && product.name.toLowerCase().includes(search.value.toLowerCase()))
+})
+
 const filteredProducts = computed(() => {
   return products.value
     .filter ( product => product.category === 'others' && product.name.toLowerCase().includes(search.value.toLowerCase()))

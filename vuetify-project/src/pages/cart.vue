@@ -6,7 +6,12 @@
       </v-col>
       <v-divider></v-divider>
       <v-col cols="12">
-        <v-list lines="two">
+        <v-list lines="two" :style="cart.length === 0 ? { background: 'transparent' } : { border: '5px solid #7A9A5E' }">
+          <v-container v-if="cart.length === 0" class="text-center">
+            <v-alert type="info" color="grey lighten-4" class="ma-4">
+              無資料，可至商城購買物品
+            </v-alert>
+          </v-container>
           <template v-for="(item, i) in cart" :key="item._id">
             <v-list-item
               :title="item.product.name"

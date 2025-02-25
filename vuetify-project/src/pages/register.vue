@@ -1,6 +1,6 @@
 <template>
-  <v-container>
-    <v-row style="position: relative; top: 80px;">
+  <v-container class="backgroundIMG" style="margin-left: 0px; margin-right: 0px; max-width: 1903px; position: relative; top:-80px">
+    <v-row style="position: relative; top: 160px;">
       <v-col cols="12">
         <h1 class="text-center">{{ $t('nav.register') }}</h1>
       </v-col>
@@ -132,3 +132,12 @@ const submit = handleSubmit(async (values) => {
 meta:
   title: 'nav.register'
 </route>
+
+<style>
+.backgroundIMG {
+  background: url(../../img/i_want_you.png) no-repeat center top;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+}
+</style>

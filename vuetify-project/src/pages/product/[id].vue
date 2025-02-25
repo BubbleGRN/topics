@@ -170,9 +170,8 @@ const submitCart = handleCartSubmit(async (values) => {
       quantity: values.quantity
     })
 
-    console.log('444444444444444',data)
     user.cart = data.result
-    console.log('456',data.result)
+
     createSnackbar({
       text: t('product.addCartSuccess'),
       snackbarProps: {
@@ -237,7 +236,6 @@ const submitRent = handleRentSubmit(async () => {
     })
     closeDialog()
   } catch (error) {
-    console.log('1111',error)
     createSnackbar({
       text: t('api.' + (error?.response?.data?.message || 'unknownError')),
       snackbarProps: {

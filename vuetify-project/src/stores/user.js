@@ -27,15 +27,10 @@ export const useUserStore = defineStore('user', () => {
     if (data.token) {
       token.value = data.token
     }
-    console.log('2222222222222222', data)
     account.value = data.account
     role.value = data.role
     cart.value = data.cart || []
-    console.log('3333333333333333', cart.value)
   }
-
-
-console.log(cart.value)
 
   const logout = () => {
     token.value = ''
