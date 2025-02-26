@@ -1,10 +1,10 @@
 <template>
-  <v-container class="backgroundIMG" style="margin-left: 0px; margin-right: 0px; max-width: 1903px; position: relative; top:-80px">
-    <v-row style="position: relative; top: 160px;">
+  <v-container style="margin-left: 0px; margin-right: 0px; max-width: 1903px; height: 950px; position: relative; top:-80px">
+    <div class="backgroundIMG"></div>
+    <v-row style="position: absolute; top: 220px; left: 680px; width: 600px; margin: auto;">
       <v-col cols="12">
         <h1 class="text-center">{{ $t('nav.register') }}</h1>
       </v-col>
-      <v-divider></v-divider>
       <v-col cols="12">
         <v-form :disabled="isSubmitting" @submit.prevent="submit">
           <v-text-field
@@ -14,11 +14,13 @@
             minlength="4"
             maxlength="20"
             counter
+            class="custom-label"
           />
           <v-text-field
             v-model="email.value.value"
             :error-messages="email.errorMessage.value"
             :label="$t('user.email')"
+            class="custom-label"
           />
           <v-text-field
             v-model="password.value.value"
@@ -28,6 +30,7 @@
             minlength="4"
             maxlength="20"
             counter
+            class="custom-label"
           />
           <v-text-field
             v-model="passwordConfirm.value.value"
@@ -37,8 +40,9 @@
             minlength="4"
             maxlength="20"
             counter
+            class="custom-label"
           />
-          <div class="text-center">
+          <div class="text-center" style="padding-top: 30px;">
             <v-btn :loading="isSubmitting" type="submit" color="primary">{{ $t('register.submit') }}</v-btn>
           </div>
         </v-form>
@@ -135,9 +139,15 @@ meta:
 
 <style>
 .backgroundIMG {
-  background: url(../../img/i_want_you.png) no-repeat center top;
-  width: 100vw;
-  height: 100vh;
-  background-size: cover;
+  background: url(../../img/i_want_you.png) no-repeat center;
+  height: 930px;
+  filter: opacity(0.3);
+  background-size: 100vw 100vh;
+  z-index: -1;
+}
+
+.custom-label .v-label {
+  font-weight: bold;
+  color: #1B03A3;
 }
 </style>

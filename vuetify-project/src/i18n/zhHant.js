@@ -1,5 +1,4 @@
 import { zhHant } from 'vuetify/locale'
-import { date } from 'yup'
 
 export default {
   $vuetify: zhHant,
@@ -19,6 +18,7 @@ export default {
     product: '商品',
     adminEvents: '活動內容',
     joinedActivity: '已參加的活動',
+    accountrent: '租借項目',
     rent: '租借項目',
   },
   register: {

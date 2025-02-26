@@ -1,6 +1,7 @@
 <template>
-  <v-container>
-    <v-row style="position: relative; top: 80px;">
+  <v-container style="position: relative;">
+    <div class="BackgroundIMG"></div>
+    <v-row style="position: absolute; top: 90px; left: 700px; width: 700px;">
       <v-col cols="12">
         <h1 class="text-center">{{ $t('nav.login') }}</h1>
       </v-col>
@@ -14,6 +15,7 @@
             minlength="4"
             maxlength="20"
             counter
+            class="custom-label"
           />
           <v-text-field
             v-model="password.value.value"
@@ -23,6 +25,7 @@
             minlength="4"
             maxlength="20"
             counter
+            class="custom-label"
           />
           <div class="text-center">
             <v-btn :loading="isSubmitting" type="submit" color="primary">{{ $t('login.submit') }}</v-btn>
@@ -109,3 +112,17 @@ const submit = handleSubmit(async (values) => {
 meta:
   title: 'nav.login'
 </route>
+
+<style>
+.BackgroundIMG {
+  background: url(../../img/login.jpg)no-repeat center;
+  height: 800px;
+  background-size: fill;
+  filter: opacity(0.3);
+}
+
+.custom-label .v-label {
+  font-weight: bold;
+  color: #9B00FF;
+}
+</style>

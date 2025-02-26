@@ -43,7 +43,7 @@ router.beforeEach(async (to, from, next) => {
 })
 
 router.afterEach((to) => {
-  document.title = i18n.global.t(to.meta.title) + ' | 購物網站'
+  document.title = 'Survivor‘s Quest | ' + i18n.global.t(to.meta.title)
 })
 
 // Workaround for https://github.com/vitejs/vite/issues/11804

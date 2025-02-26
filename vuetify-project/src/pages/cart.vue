@@ -123,6 +123,13 @@ const checkout = async () => {
 }
 </script>
 
+<route lang="yaml">
+  meta:
+    login: true
+    title: 'nav.cart'
+  </route>
+
+
 <style>
 .backgroundIMG {
   background: url(../../img/jungle-navbar.png) no-repeat center top;

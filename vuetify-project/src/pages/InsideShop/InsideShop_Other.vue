@@ -65,11 +65,10 @@ getProducts()
 </script>
 
 <route lang="yaml">
-meta:
-  login: false
-  admin: false
-  title: 'nav.home'
-</route>
+  meta:
+    login: true
+    title: 'nav.shop'
+  </route>
 
 <style>
   .position {

@@ -89,9 +89,8 @@
 
 <route lang="yaml">
 meta:
-  login: false
-  admin: false
-  title: 'nav.home'
+  login: true
+  title: 'nav.shop'
 </route>
 
 <style>

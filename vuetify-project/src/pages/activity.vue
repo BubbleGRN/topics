@@ -317,6 +317,12 @@ const joinEvent = async (event) => {
 }
 </script>
 
+<route lang="yaml">
+  meta:
+    login: true
+    title: 'nav.activity'
+  </route>
+
 <style>
 .backgroundIMG {
   background: url(../../img/jungle-navbar.png) no-repeat center top;

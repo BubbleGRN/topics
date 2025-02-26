@@ -564,6 +564,41 @@
         </v-card-text>
       </v-card>
     </div>
+    <v-card style="background: gray; position: absolute; top: 5300px; width: 100vw;">
+      <v-card-title style="text-align: center; padding-top: 150px; padding-bottom: 50px; font-size: 40px;">生存遊戲影片</v-card-title>
+      <v-row>
+        <v-col cols="6" style="padding-left: 50px;">
+          <div style="text-align: center;">
+            <v-icon style="font-size: 50px;">mdi-hand-pointing-down</v-icon><v-text class="custom-text">From Silo Entertainment</v-text>
+          </div>
+          <v-responsive aspect-ratio="16/9">
+            <iframe
+              src="https://www.youtube.com/embed/OhiD1QJYsik?autoplay=1&si=4VYwLETiXH8L6qjO"
+              frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              width="100%"
+              height="800"
+            ></iframe>
+          </v-responsive>
+        </v-col>
+        <v-col cols="6" style="padding-right: 60px;">
+          <v-responsive aspect-ratio="16/9">
+            <iframe
+              src="https://www.youtube.com/embed/iNSYzWCzKgw?autoplay=1&si=OeMHp4TRCzAhNVwb"
+              frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              width="100%"
+              height="800"
+            ></iframe>
+          </v-responsive>
+          <div style="text-align: center;">
+            <v-icon style="font-size: 50px;">mdi-hand-pointing-up</v-icon><v-text class="custom-text">From Airsoft Alfonse</v-text>
+          </div>
+        </v-col>
+      </v-row>
+    </v-card>
 </template>
 
 <script>
